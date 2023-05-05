@@ -6,6 +6,8 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import java.sql.Date;
+import java.sql.Time;
 import java.util.List;
 
 @Entity
@@ -13,18 +15,19 @@ import java.util.List;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-@Table(name = "dentistry")
-public class Dentistry {
+@Table(name = "schedule")
+public class Schedule {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
 
-    private String address;
+    @ManyToMany(mappedBy = "schedule")
+    private List<Employee> employee;
 
-    @OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL, orphanRemoval = true)
-    @JoinColumn(name = "dentistry_id")
-    private List<Employee> employees;
+    @Basic
+    private Date date;
 
-
+    @Basic
+    private Time time;
 }
