@@ -1,4 +1,4 @@
-package com.example.kyrsach.enities;
+package com.example.course.enities;
 
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
@@ -22,9 +22,11 @@ public class Dentistry {
 
     private String address;
 
-    @OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL, orphanRemoval = true)
-    @JoinColumn(name = "dentistry_id")
-    private List<Employee> employees;
+    @OneToMany(fetch = FetchType.EAGER,
+            cascade = CascadeType.ALL,
+            orphanRemoval = true,
+            mappedBy = "dentistry")
+    private List<Employee> employee;
 
 
 }

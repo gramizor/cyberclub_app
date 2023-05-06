@@ -1,7 +1,6 @@
-package com.example.kyrsach;
+package com.example.course;
 
 import javafx.application.Application;
-import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication

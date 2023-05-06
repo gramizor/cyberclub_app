@@ -1,4 +1,4 @@
-package com.example.kyrsach.controllers;
+package com.example.course.controllers;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;

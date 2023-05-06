@@ -1,4 +1,4 @@
-package com.example.kyrsach.enities;
+package com.example.course.enities;
 
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
@@ -20,8 +20,9 @@ public class Employee {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
 
-    @Column(name = "dentistry_id")
-    private int dentistryId;
+    @ManyToOne
+    @JoinColumn(name = "dentistry_id")
+    private Dentistry dentistry;
 
     private String name;
 
@@ -42,4 +43,20 @@ public class Employee {
             joinColumns = @JoinColumn(name = "employee_id"),
             inverseJoinColumns = @JoinColumn(name = "schedule_id"))
     private List<Schedule> schedule;
+
+    @OneToMany(fetch = FetchType.EAGER,
+            cascade = CascadeType.ALL,
+            orphanRemoval = true,
+            mappedBy = "employee")
+    private List<Registration> registration;
+
+    @ManyToMany(cascade = {CascadeType.PERSIST, CascadeType.MERGE})
+    @JoinTable(name = "employee_specialization",
+            joinColumns = @JoinColumn(name = "employee_id"),
+            inverseJoinColumns = @JoinColumn(name = "specialization_id"))
+    private List<Specialization> specialization;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "access_id")
+    private Access access;
 }

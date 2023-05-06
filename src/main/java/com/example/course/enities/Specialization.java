@@ -1,4 +1,4 @@
-package com.example.kyrsach.enities;
+package com.example.course.enities;
 
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
@@ -6,8 +6,6 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-import java.sql.Date;
-import java.sql.Time;
 import java.util.List;
 
 @Entity
@@ -15,19 +13,14 @@ import java.util.List;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-@Table(name = "schedule")
-public class Schedule {
-
+@Table(name = "specialization")
+public class Specialization {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
 
-    @ManyToMany(mappedBy = "schedule")
+    private String name;
+
+    @ManyToMany(mappedBy = "specialization")
     private List<Employee> employee;
-
-    @Basic
-    private Date date;
-
-    @Basic
-    private Time time;
 }

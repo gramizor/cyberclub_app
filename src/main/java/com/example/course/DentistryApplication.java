@@ -1,4 +1,4 @@
-package com.example.kyrsach;
+package com.example.course;
 
 import javafx.application.Application;
 import javafx.application.Platform;
