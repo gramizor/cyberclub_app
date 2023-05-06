@@ -18,17 +18,13 @@ public class Employee {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long id;
+    private Integer id;
 
     @ManyToOne
     @JoinColumn(name = "dentistry_id")
     private Dentistry dentistry;
 
     private String name;
-
-    private String surname;
-
-    private String patronymic;
 
     private String jobTitle;
 
@@ -56,7 +52,7 @@ public class Employee {
             inverseJoinColumns = @JoinColumn(name = "specialization_id"))
     private List<Specialization> specialization;
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "access_id")
     private Access access;
 }
