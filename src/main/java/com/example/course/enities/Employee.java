@@ -20,7 +20,7 @@ public class Employee {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "dentistry_id")
     private Dentistry dentistry;
 
@@ -46,11 +46,9 @@ public class Employee {
             mappedBy = "employee")
     private List<Registration> registration;
 
-    @ManyToMany(cascade = {CascadeType.PERSIST, CascadeType.MERGE})
-    @JoinTable(name = "employee_specialization",
-            joinColumns = @JoinColumn(name = "employee_id"),
-            inverseJoinColumns = @JoinColumn(name = "specialization_id"))
-    private List<Specialization> specialization;
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "specialization_id")
+    private Specialization specialization;
 
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "access_id")

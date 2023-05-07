@@ -21,6 +21,9 @@ public class Specialization {
 
     private String name;
 
-    @ManyToMany(mappedBy = "specialization")
+    @OneToMany(fetch = FetchType.EAGER,
+            cascade = CascadeType.ALL,
+            orphanRemoval = true,
+            mappedBy = "specialization")
     private List<Employee> employee;
 }

@@ -2,9 +2,11 @@ package com.example.course.controllers;
 import com.example.course.enities.Access;
 import com.example.course.enities.Dentistry;
 import com.example.course.enities.Employee;
+import com.example.course.enities.Specialization;
 import com.example.course.repositories.AccessRepo;
 import com.example.course.repositories.DentistryRepo;
 import com.example.course.repositories.EmployeeRepo;
+import com.example.course.repositories.SpecializationRepo;
 import jakarta.transaction.Transactional;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -33,11 +35,29 @@ public class OwnerController {
     @Autowired
     private AccessRepo accessRepo;
 
+    @Autowired
+    private SpecializationRepo specializationRepo;
+
+    @FXML
+    private ComboBox<String> accessListComboBox;
+
+    @FXML
+    private Button addNewEmployeeButton;
+
     @FXML
     private VBox boxOfEmployees;
 
     @FXML
+    private Button deleteEmployeeButton;
+
+    @FXML
     private ComboBox<String> dentistryListComboBox;
+
+    @FXML
+    private Label employeeId;
+
+    @FXML
+    private AnchorPane employeeInfoField;
 
     @FXML
     private AnchorPane employeeManagementButton;
@@ -50,12 +70,19 @@ public class OwnerController {
 
     @FXML
     private AnchorPane helloButton;
-    @FXML
-    private TextField nameInput;
+
     @FXML
     private TextField jobTitleInput;
+
     @FXML
     private TextField loginInput;
+
+    @FXML
+    private AnchorPane mainField;
+
+    @FXML
+    private TextField nameInput;
+
 
     @FXML
     private TextField numberInput;
@@ -64,23 +91,19 @@ public class OwnerController {
     private TextField passwordInput;
 
     @FXML
-    private AnchorPane mainField;
+    private Button saveChangesButton;
 
     @FXML
     private Label username;
-    @FXML
-    private AnchorPane employeeInfoField;
-    @FXML
-    private Button deleteEmployeeButton;
-    @FXML
-    private Button saveChangesButton;
-    @FXML
-    private Label employeeId;
-    @FXML
-    private ComboBox<String> accessListComboBox;
+
 
     @FXML
-    private Button addNewEmployeeButton;
+    private TextField successDeleteInput;
+    @FXML
+    private Button showDeleteEmployeeButton;
+    @FXML
+    private ComboBox<String> specializationListComboBox;
+
 
     @FXML
     void dentistryChanged(ActionEvent event) {
@@ -88,6 +111,8 @@ public class OwnerController {
     }
     void dentistryChangedFun() {
         clearEmployeeInfoField();
+        deleteEmployeeButton.setVisible(false);
+        successDeleteInput.setVisible(false);
         boxOfEmployees.getChildren().clear();
         String address = dentistryListComboBox.getValue();
         Dentistry dentistry = dentistryRepo.findByAddress(address);
@@ -113,6 +138,11 @@ public class OwnerController {
                 if(employee.getAccess()!=null) {
                     accessListComboBox.setValue(employee.getAccess().getName());
                 }
+                if(employee.getSpecialization()!= null){
+                    specializationListComboBox.setValue(employee.getSpecialization().getName());
+                }
+                deleteEmployeeButton.setVisible(false);
+                successDeleteInput.setVisible(false);
             });
             boxOfEmployees.getChildren().add(anchorPane);
         }
@@ -120,18 +150,28 @@ public class OwnerController {
 
     public void clearEmployeeInfoField(){
         accessListComboBox.getItems().clear();
-        accessListComboBox.getItems().addAll("owner", "reception", "doctor");
+        specializationListComboBox.getItems().clear();
+        List<Access> accessList = accessRepo.findAllByNameStartingWith("");
+        List<Specialization> specializationList = specializationRepo.findAllByNameStartingWith("");
+        for (Access o : accessList){
+            accessListComboBox.getItems().add(o.getName());
+        }
+        for(Specialization o : specializationList){
+            specializationListComboBox.getItems().add(o.getName());
+        }
         nameInput.setText(null);
         jobTitleInput.setText(null);
         numberInput.setText(null);
         loginInput.setText(null);
         passwordInput.setText(null);
         employeeId.setText(null);
+        specializationListComboBox.setValue(null);
         accessListComboBox.setValue(null);
     }
 
     @FXML
     void saveChanges(ActionEvent event) {
+        saveChangesButton.setText("Сохранить изменения");
         if(employeeId.getText() != null) {
             Optional<Employee> employee = employeeRepo.findById(Integer.valueOf(employeeId.getText()));
             employee.map(o -> {
@@ -142,6 +182,8 @@ public class OwnerController {
                 o.setPassword(passwordInput.getText());
                 Access access = accessRepo.findByName(accessListComboBox.getValue());
                 o.setAccess(access);
+                Specialization specialization = specializationRepo.findByName(specializationListComboBox.getValue());
+                o.setSpecialization(specialization);
                 employeeRepo.save(o);
                 return null;
             });
@@ -187,15 +229,24 @@ public class OwnerController {
     @FXML
     void addNewEmployee(ActionEvent event) {
         clearEmployeeInfoField();
+        saveChangesButton.setText("Добавить");
         dentistryChanged(event);
     }
     @FXML
     void deleteEmployee(ActionEvent event) {
-        System.out.println(employeeId.getText());
-        if(employeeId.getText() != null) {
-            employeeRepo.deleteEmployee((Integer.valueOf(employeeId.getText())));
+        if(successDeleteInput.getText().equals("Подтвердить") || successDeleteInput.getText().equals("подтвердить")) {
+            if (employeeId.getText() != null) {
+                employeeRepo.deleteEmployee((Integer.valueOf(employeeId.getText())));
+            }
+            dentistryChangedFun();
+            successDeleteInput.setText(null);
         }
-        dentistryChangedFun();
+    }
+
+    @FXML
+    void showDeleteEmployee(ActionEvent event) {
+        deleteEmployeeButton.setVisible(true);
+        successDeleteInput.setVisible(true);
     }
 
     @FXML
