@@ -8,23 +8,23 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: #2E3348;" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.course.controllers.AuthorizationController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: #557281;" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.course.controllers.AuthorizationController">
    <children>
-      <AnchorPane layoutY="100.0" prefHeight="301.0" prefWidth="600.0" style="-fx-background-color: #ffffff;">
+      <AnchorPane layoutX="14.0" layoutY="106.0" prefHeight="280.0" prefWidth="573.0" style="-fx-background-color: #6c94a8; -fx-border-radius: 50px;">
          <children>
-            <TextField fx:id="loginField" cache="true" focusTraversable="false" layoutX="201.0" layoutY="95.0" prefHeight="26.0" prefWidth="203.0" promptText="Логин" style="-fx-background-color: #fcf8ef; -fx-border-color: #000000; -fx-border-width: 1;">
+            <TextField fx:id="loginField" cache="true" focusTraversable="false" layoutX="186.0" layoutY="86.0" prefHeight="26.0" prefWidth="203.0" promptText="Логин" style="-fx-background-color: #fcf8ef;">
                <opaqueInsets>
                   <Insets />
                </opaqueInsets>
             </TextField>
-            <PasswordField fx:id="passwordField" focusTraversable="false" layoutX="199.0" layoutY="157.0" prefHeight="26.0" prefWidth="203.0" promptText="Пароль" style="-fx-background-color: #fcf8ef; -fx-border-color: #000000; -fx-border-width: 1;" />
-            <Label layoutX="228.0" layoutY="27.0" text="Авторизация" textAlignment="CENTER">
+            <PasswordField fx:id="passwordField" focusTraversable="false" layoutX="184.0" layoutY="148.0" prefHeight="26.0" prefWidth="203.0" promptText="Пароль" style="-fx-background-color: #fcf8ef;" />
+            <Label layoutX="213.0" layoutY="18.0" style="-fx-font-weight: 800;" text="Авторизация" textAlignment="CENTER" textFill="WHITE">
                <font>
-                  <Font size="24.0" />
+                  <Font name="System Bold" size="24.0" />
                </font>
             </Label>
-            <Button fx:id="loginButton" layoutX="252.0" layoutY="241.0" mnemonicParsing="false" onAction="#login" prefHeight="30.0" prefWidth="101.0" text="Войти" />
-            <Label fx:id="loginErrorMsg" alignment="CENTER" layoutX="231.0" layoutY="206.0" prefHeight="18.0" prefWidth="144.0" text="тут ошибка" textFill="RED" />
+            <Button fx:id="loginButton" layoutX="237.0" layoutY="232.0" mnemonicParsing="false" onAction="#login" prefHeight="30.0" prefWidth="101.0" style="-fx-background-color: #5dabd0;" text="Войти" textFill="WHITE" />
+            <Label fx:id="loginErrorMsg" alignment="CENTER" layoutX="216.0" layoutY="197.0" prefHeight="18.0" prefWidth="144.0" text="тут ошибка" textFill="#a60000" />
          </children>
       </AnchorPane>
       <Label layoutX="179.0" layoutY="25.0" text="Улыбка радуги" textFill="WHITE">
