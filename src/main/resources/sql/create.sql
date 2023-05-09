@@ -34,11 +34,9 @@ create table patients (
     dob date,
     gender varchar(255),
     mail varchar(255),
-    name varchar(255),
+    snp varchar(255),
     number varchar(255),
     passport varchar(255),
-    patronymic varchar(255),
-    surname varchar(255),
     primary key (id));
 
 create table procedure (
