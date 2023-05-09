@@ -37,6 +37,14 @@
             </Group>
          </children>
       </HBox>
+<!--<<<<<<< Updated upstream-->
+<!--=======-->
+      <Text fill="WHITE" layoutX="61.0" layoutY="77.0" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-weight: 800;" text="Здравствуйте, Врач">
+         <font>
+            <Font size="40.0" />
+         </font>
+      </Text>
+<!--&gt;>>>>>> Stashed changes-->
       <VBox layoutX="22.0" layoutY="121.0">
          <children>
             <VBox>
@@ -134,6 +142,11 @@
          </children>
       </VBox>
       <Button layoutX="401.0" layoutY="705.0" mnemonicParsing="false" prefHeight="50.0" prefWidth="135.0" style="-fx-background-color: #5dabd0;" text="Добавить" textFill="WHITE">
+         <font>
+            <Font size="20.0" />
+         </font>
+      </Button>
+      <Button layoutX="1119.0" layoutY="33.0" mnemonicParsing="false" prefHeight="50.0" prefWidth="135.0" style="-fx-background-color: #a60000;" text="Выйти" textFill="WHITE">
          <font>
             <Font size="20.0" />
          </font>
