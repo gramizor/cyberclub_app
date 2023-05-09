@@ -29,18 +29,6 @@ create table employees (
     dentistry_id bigint,
     primary key (id));
 
-create table patients (
-    id bigserial not null,
-    dob date,
-    gender varchar(255),
-    mail varchar(255),
-    name varchar(255),
-    number varchar(255),
-    passport varchar(255),
-    patronymic varchar(255),
-    surname varchar(255),
-    primary key (id));
-
 create table procedure (
     id bigserial not null,
     cost float(53) not null,
@@ -77,6 +65,18 @@ create table specialization (
     id bigserial not null,
     name varchar(255),
     primary key (id));
+
+
+create table patients (
+                          id bigserial not null,
+                          dob date,
+                          gender varchar(255),
+                          mail varchar(255),
+                          number varchar(255),
+                          passport varchar(255),
+                          snp varchar(255),
+                          primary key (id));
+
 
 alter table if exists employee_schedule add constraint FKpxt6pq9ljtsvppjmhcnlhu1ko foreign key (schedule_id) references schedule;
 alter table if exists employee_schedule add constraint FK8mg193kvii4bh06cocaa0pbi2 foreign key (employee_id) references employees;
