@@ -86,7 +86,7 @@
             </Text>
          </children>
       </AnchorPane>
-      <AnchorPane layoutX="263.0" layoutY="22.328125" opacity="0.0">
+      <AnchorPane layoutX="263.0" layoutY="22.328125" visible="false">
          <children>
             <Button layoutX="290.0" layoutY="60.671875" mnemonicParsing="false" prefHeight="40.0" prefWidth="219.0" style="-fx-background-color: #5dabd0;" text="Поиск" textFill="WHITE">
                <font>
