@@ -3,112 +3,38 @@
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.Group?>
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.control.TextArea?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane prefHeight="800.0" prefWidth="1280.0" style="-fx-background-color: #557281;" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane prefHeight="801.0" prefWidth="1281.0" style="-fx-background-color: #557281;" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1">
    <children>
-      <HBox layoutX="627.0" layoutY="51.0" prefWidth="425.0">
+      <AnchorPane layoutX="256.0" layoutY="33.0">
          <children>
-            <Group>
-               <children>
-                  <VBox layoutY="23.46875" prefHeight="650.0" prefWidth="250.0" style="-fx-background-color: #6c94a8;" />
-                  <Text fill="WHITE" layoutX="10.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Пациенты" wrappingWidth="146.98834741120913">
-                     <font>
-                        <Font size="20.0" />
-                     </font>
-                  </Text>
-               </children>
-            </Group>
-            <Group>
-               <children>
-                  <VBox layoutY="23.46875" prefHeight="650.0" prefWidth="203.0" style="-fx-background-color: #6c94a8;" />
-                  <Text fill="WHITE" layoutX="10.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Время" wrappingWidth="146.98834741120913">
-                     <font>
-                        <Font size="20.0" />
-                     </font>
-                  </Text>
-               </children>
-            </Group>
-         </children>
-      </HBox>
-<!--<<<<<<< Updated upstream-->
-<!--=======-->
-      <Text fill="WHITE" layoutX="61.0" layoutY="77.0" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-weight: 800;" text="Здравствуйте, Врач">
-         <font>
-            <Font size="40.0" />
-         </font>
-      </Text>
-<!--&gt;>>>>>> Stashed changes-->
-      <VBox layoutX="22.0" layoutY="121.0">
-         <children>
-            <VBox>
+            <VBox layoutX="5.0" layoutY="101.0">
                <children>
                   <Group>
                      <children>
-                        <TextField layoutX="68.0" layoutY="1.0" prefHeight="45.0" prefWidth="376.0" />
-                        <Text fill="WHITE" layoutX="-67.0" layoutY="31.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Фамилия">
+                        <VBox layoutX="127.0" layoutY="7.0" prefHeight="36.0" prefWidth="289.0" style="-fx-background-color: #fff;" />
+                        <Text fill="WHITE" layoutX="-10.0" layoutY="36.0" strokeType="OUTSIDE" strokeWidth="0.0" text="ФИО">
                            <font>
                               <Font size="25.0" />
                            </font>
                         </Text>
                      </children>
                      <VBox.margin>
-                        <Insets bottom="10.0" top="10.0" />
+                        <Insets bottom="10.0" />
                      </VBox.margin>
                   </Group>
                   <Group>
                      <children>
-                        <TextField layoutX="68.0" layoutY="1.0" prefHeight="45.0" prefWidth="376.0" />
-                        <Text fill="WHITE" layoutX="-67.0" layoutY="31.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Имя">
-                           <font>
-                              <Font size="25.0" />
-                           </font>
-                        </Text>
-                     </children>
-                     <VBox.margin>
-                        <Insets bottom="10.0" top="10.0" />
-                     </VBox.margin>
-                  </Group>
-                  <Group>
-                     <children>
-                        <TextField layoutX="68.0" layoutY="1.0" prefHeight="45.0" prefWidth="376.0" />
-                        <Text fill="WHITE" layoutX="-67.0" layoutY="31.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Отчество">
-                           <font>
-                              <Font size="25.0" />
-                           </font>
-                        </Text>
-                     </children>
-                     <VBox.margin>
-                        <Insets bottom="10.0" top="10.0" />
-                     </VBox.margin>
-                  </Group>
-                  <Group>
-                     <children>
-                        <TextField layoutX="68.0" layoutY="1.0" prefHeight="45.0" prefWidth="376.0" />
-                        <Text fill="WHITE" layoutX="-67.0" layoutY="31.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Статус">
-                           <font>
-                              <Font size="25.0" />
-                           </font>
-                        </Text>
-                     </children>
-                     <VBox.margin>
-                        <Insets bottom="10.0" top="10.0" />
-                     </VBox.margin>
-                  </Group>
-               </children>
-            </VBox>
-            <VBox>
-               <children>
-                  <Group>
-                     <children>
-                        <TextArea layoutX="126.0" prefHeight="117.0" prefWidth="379.0" />
-                        <Text fill="WHITE" layoutX="-10.0" layoutY="36.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Процедура">
+                        <TextArea layoutX="126.0" prefHeight="117.0" prefWidth="289.0" />
+                        <Text fill="WHITE" layoutX="-10.0" layoutY="36.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Диагноз">
                            <font>
                               <Font size="25.0" />
                            </font>
@@ -120,8 +46,8 @@
                   </Group>
                   <Group>
                      <children>
-                        <TextArea layoutX="126.0" prefHeight="117.0" prefWidth="379.0" />
-                        <Text fill="WHITE" layoutX="-10.0" layoutY="36.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Диагноз">
+                        <TextArea layoutX="126.0" prefHeight="117.0" prefWidth="289.0" />
+                        <Text fill="WHITE" layoutX="-10.0" layoutY="36.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Лечение">
                            <font>
                               <Font size="25.0" />
                            </font>
@@ -135,21 +61,77 @@
                <opaqueInsets>
                   <Insets top="5.0" />
                </opaqueInsets>
-               <VBox.margin>
-                  <Insets top="2.0" />
-               </VBox.margin>
             </VBox>
+            <Button layoutX="284.0" layoutY="675.0" mnemonicParsing="false" prefHeight="50.0" prefWidth="135.0" style="-fx-background-color: #5dabd0;" text="Добавить" textFill="WHITE">
+               <font>
+                  <Font size="20.0" />
+               </font>
+            </Button>
+            <ScrollPane layoutX="450.0" layoutY="97.0" prefHeight="643.0" prefWidth="508.0">
+              <content>
+                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="200.0" prefWidth="200.0" />
+              </content>
+            </ScrollPane>
+            <TextField layoutX="452.0" layoutY="38.0" prefHeight="41.0" prefWidth="248.0" />
+            <Button layoutX="721.0" layoutY="39.0" mnemonicParsing="false" prefHeight="20.0" prefWidth="88.0" style="-fx-background-color: #5dabd0;" text="Поиск" textFill="WHITE">
+               <font>
+                  <Font size="20.0" />
+               </font>
+            </Button>
+            <VBox layoutX="142.0" layoutY="422.0" prefHeight="131.0" prefWidth="289.0" style="-fx-background-color: #fff;" />
+            <Text fill="WHITE" layoutY="428.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Процедуры">
+               <font>
+                  <Font size="25.0" />
+               </font>
+            </Text>
          </children>
-      </VBox>
-      <Button layoutX="401.0" layoutY="705.0" mnemonicParsing="false" prefHeight="50.0" prefWidth="135.0" style="-fx-background-color: #5dabd0;" text="Добавить" textFill="WHITE">
-         <font>
-            <Font size="20.0" />
-         </font>
-      </Button>
-      <Button layoutX="1119.0" layoutY="33.0" mnemonicParsing="false" prefHeight="50.0" prefWidth="135.0" style="-fx-background-color: #a60000;" text="Выйти" textFill="WHITE">
-         <font>
-            <Font size="20.0" />
-         </font>
-      </Button>
+      </AnchorPane>
+      <AnchorPane layoutX="263.0" layoutY="22.328125" opacity="0.0">
+         <children>
+            <Button layoutX="290.0" layoutY="60.671875" mnemonicParsing="false" prefHeight="40.0" prefWidth="219.0" style="-fx-background-color: #5dabd0;" text="Поиск" textFill="WHITE">
+               <font>
+                  <Font size="20.0" />
+               </font>
+            </Button>
+            <ScrollPane layoutY="109.671875" prefHeight="649.0" prefWidth="994.0">
+               <content>
+                  <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="200.0" prefWidth="200.0" />
+               </content>
+            </ScrollPane>
+            <TextField layoutX="2.0" layoutY="61.671875" prefHeight="39.0" prefWidth="278.0" />
+            <Text fill="WHITE" layoutX="15.0" layoutY="27.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Записи" wrappingWidth="188.7616275655132">
+               <font>
+                  <Font size="40.0" />
+               </font>
+            </Text>
+         </children>
+      </AnchorPane>
+      <AnchorPane layoutY="-2.0" prefHeight="801.0" prefWidth="238.0" style="-fx-background-color: #fff;">
+         <children>
+            <AnchorPane layoutX="-4.0" layoutY="1.0" prefHeight="130.0" prefWidth="243.0" style="-fx-background-color: #6C94A8; -fx-border-color: #000;">
+               <children>
+                  <Label layoutX="70.0" layoutY="47.0" text="Записи" textFill="WHITE">
+                     <font>
+                        <Font size="30.0" />
+                     </font>
+                  </Label>
+               </children>
+            </AnchorPane>
+            <AnchorPane layoutX="-6.0" layoutY="131.0" prefHeight="141.0" prefWidth="245.0" style="-fx-background-color: #6C94A8; -fx-border-color: #000;">
+               <children>
+                  <Label layoutX="21.0" layoutY="54.0" text="Карта пациента" textFill="WHITE">
+                     <font>
+                        <Font size="30.0" />
+                     </font>
+                  </Label>
+               </children>
+            </AnchorPane>
+            <Button layoutX="41.0" layoutY="729.0" mnemonicParsing="false" prefHeight="50.0" prefWidth="159.0" style="-fx-background-color: #a60000;" text="Выйти" textFill="WHITE">
+               <font>
+                  <Font size="20.0" />
+               </font>
+            </Button>
+         </children>
+      </AnchorPane>
    </children>
 </AnchorPane>
