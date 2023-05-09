@@ -37,7 +37,7 @@
                         <Font size="13.0" />
                      </font>
                   </TextField>
-                  <Button fx:id="saveChangesButton1" layoutX="84.0" layoutY="146.0" mnemonicParsing="false" onAction="#saveProcedureChanges" prefHeight="30.0" prefWidth="163.0" style="-fx-background-color: #85c6ec;" text="Сохранить изменения">
+                  <Button fx:id="saveProcedureChangesButton" layoutX="84.0" layoutY="146.0" mnemonicParsing="false" onAction="#saveProcedureChanges" prefHeight="30.0" prefWidth="163.0" style="-fx-background-color: #85c6ec;" text="Сохранить изменения">
                      <font>
                         <Font size="13.0" />
                      </font>
@@ -55,6 +55,7 @@
                   </Button>
                   <TextField fx:id="successProcedureDeleteInput" layoutX="270.0" layoutY="113.0" prefHeight="26.0" prefWidth="104.0" promptText="Подтвердить" />
                   <Button fx:id="deleteProcedureButton" layoutX="381.0" layoutY="113.0" mnemonicParsing="false" onAction="#deleteProcedure" prefHeight="26.0" prefWidth="52.0" style="-fx-background-color: #85c6ec;" text="Ok" />
+                  <Label fx:id="procedureId" layoutX="122.0" layoutY="118.0" visible="false" />
                </children>
             </AnchorPane>
             <Label alignment="CENTER" contentDisplay="CENTER" layoutX="191.0" layoutY="71.0" text="Общая информация">
@@ -62,7 +63,6 @@
                   <Font size="24.0" />
                </font>
             </Label>
-            <AnchorPane layoutX="66.0" layoutY="482.0" prefHeight="200.0" prefWidth="474.0" style="-fx-background-color: #ffffff; -fx-border-color: #000000;" />
          </children>
       </AnchorPane>
       <AnchorPane fx:id="employeeManagementButton" blendMode="MULTIPLY" layoutY="57.0" onMouseClicked="#showEmployeeManagement" prefHeight="88.0" prefWidth="199.0" style="-fx-background-color: #6C94A8;">
@@ -227,7 +227,6 @@
                   <Font size="24.0" />
                </font>
             </Label>
-            <AnchorPane layoutX="66.0" layoutY="482.0" prefHeight="200.0" prefWidth="474.0" style="-fx-background-color: #ffffff;" />
             <ScrollPane layoutX="636.0" layoutY="116.0" prefHeight="566.0" prefWidth="418.0">
                <content>
                   <VBox fx:id="boxOfEmployees" prefHeight="564.0" prefWidth="401.0" style="-fx-background-color: #ffffff;" />
