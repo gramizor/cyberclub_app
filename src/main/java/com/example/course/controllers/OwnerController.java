@@ -1,12 +1,6 @@
 package com.example.course.controllers;
-import com.example.course.enities.Access;
-import com.example.course.enities.Dentistry;
-import com.example.course.enities.Employee;
-import com.example.course.enities.Specialization;
-import com.example.course.repositories.AccessRepo;
-import com.example.course.repositories.DentistryRepo;
-import com.example.course.repositories.EmployeeRepo;
-import com.example.course.repositories.SpecializationRepo;
+import com.example.course.enities.*;
+import com.example.course.repositories.*;
 import jakarta.transaction.Transactional;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -36,10 +30,33 @@ public class OwnerController {
     private AccessRepo accessRepo;
 
     @Autowired
+    private ProcedureRepo procedureRepo;
+
+    @Autowired
     private SpecializationRepo specializationRepo;
 
     @FXML
     private ComboBox<String> accessListComboBox;
+
+    @FXML
+    private VBox boxOfProcedures;
+    @FXML
+    private TextField procedureCostInput;
+
+    @FXML
+    private AnchorPane procedureField;
+
+    @FXML
+    private AnchorPane procedureInfoField;
+
+    @FXML
+    private AnchorPane procedureManagementButton;
+
+    @FXML
+    private TextField procedureNameInput;
+
+    @FXML
+    private Button deleteProcedureButton;
 
     @FXML
     private Button addNewEmployeeButton;
@@ -66,12 +83,6 @@ public class OwnerController {
     private AnchorPane employeeManagementField;
 
     @FXML
-    private AnchorPane hello;
-
-    @FXML
-    private AnchorPane helloButton;
-
-    @FXML
     private TextField jobTitleInput;
 
     @FXML
@@ -92,9 +103,6 @@ public class OwnerController {
 
     @FXML
     private Button saveChangesButton;
-
-    @FXML
-    private Label username;
 
 
     @FXML
@@ -206,7 +214,7 @@ public class OwnerController {
 
     private void hide(){
         employeeManagementField.setVisible(false);
-        hello.setVisible(false);
+        procedureField.setVisible(false);
     }
 
     @FXML
@@ -250,14 +258,40 @@ public class OwnerController {
     }
 
     @FXML
-    void addBox(ActionEvent event) {
+    void showDeleteProcedure(ActionEvent event) {
+
+    }
+    @FXML
+    void saveProcedureChanges(ActionEvent event) {
+
+    }
+    @FXML
+    void deleteProcedure(ActionEvent event) {
+
+    }
+    @FXML
+    void addNewProcedure(ActionEvent event) {
 
     }
 
     @FXML
-    void showHello(MouseEvent event) {
+    void showProcedure(MouseEvent event) {
         hide();
-        hello.setVisible(true);
+        procedureField.setVisible(true);
+        List<Procedure> procedureList = procedureRepo.findAllByNameContains("");
+        boxOfProcedures.getChildren().clear();
+        for(Procedure o : procedureList){
+            Label label = new Label(o.getName() + " - " + o.getCost());
+            AnchorPane anchorPane = new AnchorPane();
+            AnchorPane.setLeftAnchor(label, 10d);
+            AnchorPane.setRightAnchor(label, 10d);
+            AnchorPane.setTopAnchor(label, 10d);
+            AnchorPane.setBottomAnchor(label, 10d);
+            anchorPane.getChildren().add(label);
+            anchorPane.setStyle("-fx-border-color: #000000");
+            anchorPane.setPrefHeight(30d);
+            boxOfProcedures.getChildren().add(anchorPane);
+        }
     }
 
 }

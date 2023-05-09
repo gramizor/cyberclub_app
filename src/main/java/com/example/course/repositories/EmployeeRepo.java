@@ -16,4 +16,8 @@ public interface EmployeeRepo extends CrudRepository<Employee, Integer> {
     @Transactional
     @Query("delete from Employee b where b.id=:id")
     void deleteEmployee(@Param("id") Integer id);
+
+    Employee findByLogin(String login);
+
+    boolean existsByLogin(String login);
 }

@@ -24,7 +24,7 @@
                </font>
             </Label>
             <Button fx:id="loginButton" layoutX="237.0" layoutY="232.0" mnemonicParsing="false" onAction="#login" prefHeight="30.0" prefWidth="101.0" style="-fx-background-color: #5dabd0;" text="Войти" textFill="WHITE" />
-            <Label fx:id="loginErrorMsg" alignment="CENTER" layoutX="216.0" layoutY="197.0" prefHeight="18.0" prefWidth="144.0" text="тут ошибка" textFill="#a60000" />
+            <Label fx:id="loginErrorMsg" alignment="CENTER" layoutX="216.0" layoutY="197.0" prefHeight="18.0" prefWidth="144.0" textFill="#a60000" visible="false" />
          </children>
       </AnchorPane>
       <Label layoutX="179.0" layoutY="25.0" text="Улыбка радуги" textFill="WHITE">

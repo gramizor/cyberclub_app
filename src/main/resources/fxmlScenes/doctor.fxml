@@ -11,8 +11,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-
-<AnchorPane prefHeight="800.0" prefWidth="1280.0" style="-fx-background-color: #557281;" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="fxmlScenes.Doctor">
+<AnchorPane prefHeight="800.0" prefWidth="1280.0" style="-fx-background-color: #557281;" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1">
    <children>
       <HBox layoutX="627.0" layoutY="51.0" prefWidth="425.0">
          <children>
@@ -38,11 +37,6 @@
             </Group>
          </children>
       </HBox>
-      <Text fill="WHITE" layoutX="61.0" layoutY="77.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Здравствуйте, Врач">
-         <font>
-            <Font size="40.0" />
-         </font>
-      </Text>
       <VBox layoutX="22.0" layoutY="121.0">
          <children>
             <VBox>
@@ -140,11 +134,6 @@
          </children>
       </VBox>
       <Button layoutX="401.0" layoutY="705.0" mnemonicParsing="false" prefHeight="50.0" prefWidth="135.0" style="-fx-background-color: #5dabd0;" text="Добавить" textFill="WHITE">
-         <font>
-            <Font size="20.0" />
-         </font>
-      </Button>
-      <Button layoutX="1119.0" layoutY="20.0" mnemonicParsing="false" prefHeight="15.0" prefWidth="125.0" style="-fx-background-color: #A60000;" text="Выход" textFill="WHITE">
          <font>
             <Font size="20.0" />
          </font>

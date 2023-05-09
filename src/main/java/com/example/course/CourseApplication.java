@@ -12,7 +12,7 @@ import org.springframework.context.ConfigurableApplicationContext;
 @SpringBootApplication
 public class CourseApplication extends Application{
 
-    private ConfigurableApplicationContext springContext;
+    protected static ConfigurableApplicationContext springContext;
     private Parent rootNode;
 
     public static void main(String[] args) {

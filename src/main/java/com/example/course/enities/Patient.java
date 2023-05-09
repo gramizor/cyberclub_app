@@ -22,12 +22,6 @@ public class Patient {
 
     private String name;
 
-    private String surname;
-
-    private String patronymic;
-
-    private String passport;
-
     @Basic
     private Date DOB;
 
