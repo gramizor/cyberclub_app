@@ -289,7 +289,6 @@ public class OwnerController {
     @FXML
     void deleteProcedure(ActionEvent event) {
         if(successProcedureDeleteInput.getText().equals("Подтвердить") || successProcedureDeleteInput.getText().equals("подтвердить")) {
-            System.out.println(procedureId.getText());
             if (procedureId.getText() != null) {
                 procedureRepo.deleteProcedure(Long.valueOf(procedureId.getText()));
             }
