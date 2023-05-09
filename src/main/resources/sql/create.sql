@@ -76,6 +76,18 @@ create table specialization (
     name varchar(255),
     primary key (id));
 
+
+create table patients (
+                          id bigserial not null,
+                          dob date,
+                          gender varchar(255),
+                          mail varchar(255),
+                          number varchar(255),
+                          passport varchar(255),
+                          snp varchar(255),
+                          primary key (id));
+
+
 alter table if exists employee_schedule add constraint FKpxt6pq9ljtsvppjmhcnlhu1ko foreign key (schedule_id) references schedule;
 alter table if exists employee_schedule add constraint FK8mg193kvii4bh06cocaa0pbi2 foreign key (employee_id) references employees;
 alter table if exists employee_specialization add constraint FKsrygpm6s436c4x4rg1f73plb2 foreign key (specialization_id) references specialization;

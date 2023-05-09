@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.geometry.Insets?>
-<?import javafx.scene.Group?>
 <?import javafx.scene.control.Button?>
-<?import javafx.scene.control.ChoiceBox?>
+<?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.HBox?>
@@ -13,185 +13,414 @@
 <?import javafx.scene.shape.Line?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="1200.0" style="-fx-background-color: #557281;" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1">
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="801.0" prefWidth="1281.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1">
    <children>
-      <Pane layoutX="22.0" layoutY="77.0" prefHeight="260.0" prefWidth="440.0" style="-fx-background-color: #6C94A8; -fx-background-radius: 2%;">
-         <children>
-            <VBox layoutX="23.0" layoutY="14.0" prefHeight="148.0" prefWidth="349.0">
-               <children>
-                  <Group>
-                     <children>
-                        <Label layoutY="7.100000381469727" prefHeight="30.0" prefWidth="120.0" style="-fx-font-weight: 500; -fx-font-size: 18px;" text="Пациент" textFill="WHITE">
-                           <font>
-                              <Font name="System Font" size="16.0" />
-                           </font>
-                        </Label>
-                        <ChoiceBox layoutX="109.0" layoutY="7.0" prefHeight="27.0" prefWidth="205.0" />
-                     </children>
-                     <VBox.margin>
-                        <Insets bottom="3.0" left="2.0" top="7.0" />
-                     </VBox.margin>
-                  </Group>
-                  <Group>
-                     <children>
-                        <Label layoutY="7.100000381469727" prefHeight="30.0" prefWidth="120.0" style="-fx-font-weight: 500; -fx-font-size: 18px;" text="Врач" textFill="WHITE">
-                           <font>
-                              <Font name="System Font" size="16.0" />
-                           </font>
-                        </Label>
-                        <ChoiceBox layoutX="109.0" layoutY="7.0" prefHeight="27.0" prefWidth="205.0" />
-                     </children>
-                     <VBox.margin>
-                        <Insets bottom="3.0" left="2.0" top="7.0" />
-                     </VBox.margin>
-                  </Group>
-                  <Group>
-                     <children>
-                        <Label layoutY="7.100000381469727" prefHeight="30.0" prefWidth="120.0" style="-fx-font-weight: 500; -fx-font-size: 18px;" text="Время" textFill="WHITE">
-                           <font>
-                              <Font name="System Font" size="16.0" />
-                           </font>
-                        </Label>
-                        <ChoiceBox layoutX="109.0" layoutY="7.0" prefHeight="27.0" prefWidth="205.0" />
-                     </children>
-                     <VBox.margin>
-                        <Insets bottom="3.0" left="2.0" top="7.0" />
-                     </VBox.margin>
-                  </Group>
-                  <Group>
-                     <children>
-                        <Label layoutY="7.100000381469727" prefHeight="30.0" prefWidth="120.0" style="-fx-font-weight: 500; -fx-font-size: 18px;" text="Дата" textFill="WHITE">
-                           <font>
-                              <Font name="System Font" size="16.0" />
-                           </font>
-                        </Label>
-                        <ChoiceBox layoutX="109.0" layoutY="7.0" prefHeight="27.0" prefWidth="205.0" />
-                     </children>
-                     <VBox.margin>
-                        <Insets bottom="3.0" left="2.0" top="7.0" />
-                     </VBox.margin>
-                  </Group>
-               </children>
-               <padding>
-                  <Insets bottom="5.0" left="5.0" top="5.0" />
-               </padding>
-            </VBox>
-            <Button alignment="CENTER" layoutX="130.0" layoutY="198.0" mnemonicParsing="false" prefHeight="50.0" prefWidth="180.0" style="-fx-background-color: #5DABD0; -fx-background-radius: 5px; -fx-font-size: 18px;" text="Добавить запись" textAlignment="CENTER" textFill="WHITE" />
-         </children>
-      </Pane>
-      <Label alignment="CENTER" layoutX="-3.0" layoutY="7.0" prefHeight="50.0" prefWidth="206.0" style="-fx-font-weight: 800; -fx-font-size: 35px;" text="Ресепшн" textFill="WHITE">
+      <Line endX="1180.0" layoutX="100.0" layoutY="56.0" startX="-100.0" />
+      <Line endX="-95.0" endY="691.0" layoutX="294.0" layoutY="109.0" startX="-95.0" startY="-52.0" />
+      <Label layoutX="511.0" layoutY="5.0" prefHeight="17.0" prefWidth="216.0" text="Ресепшн">
          <font>
-            <Font name="System Bold" size="30.0" />
+            <Font size="36.0" />
          </font>
       </Label>
-      <Group layoutX="853.0" layoutY="17.0" />
-      <Line endX="1146.7769775390625" layoutX="74.0" layoutY="63.0" startX="-75.0" startY="1.1444091796875E-5" stroke="#6c94a8" />
-      <Pane layoutX="21.0" layoutY="416.0" prefHeight="371.0" prefWidth="440.0" style="-fx-background-color: #6C94A8; -fx-background-radius: 2%;">
+      <AnchorPane layoutY="57.0" prefHeight="88.0" prefWidth="199.0" style="-fx-background-color: #6C94A8;">
          <children>
-            <Button alignment="CENTER" layoutX="125.0" layoutY="307.0" mnemonicParsing="false" prefHeight="50.0" prefWidth="191.0" style="-fx-background-color: #5DABD0; -fx-background-radius: 5px; -fx-font-size: 18px; -fx-font-weight: 500;" text="Добавить пациента" textAlignment="CENTER" textFill="WHITE" />
-            <VBox layoutX="14.0" layoutY="14.0" prefHeight="252.0" prefWidth="440.0">
+            <Label alignment="CENTER" contentDisplay="CENTER" layoutX="64.0" layoutY="35.0" text="Пациенты" textFill="WHITE">
+               <font>
+                  <Font size="15.0" />
+               </font>
+            </Label>
+         </children>
+      </AnchorPane>
+      <AnchorPane layoutY="145.0" prefHeight="88.0" prefWidth="199.0" style="-fx-background-color: #6C94A8;">
+         <children>
+            <Label alignment="CENTER" contentDisplay="CENTER" layoutX="73.0" layoutY="33.0" text="Запись" textFill="WHITE">
+               <font>
+                  <Font size="15.0" />
+               </font>
+            </Label>
+         </children>
+      </AnchorPane>
+      <Line endX="-318.0" layoutX="318.0" layoutY="145.0" startX="-119.0" />
+      <Line endX="-318.0" layoutX="318.0" layoutY="233.0" startX="-119.0" />
+      <AnchorPane layoutY="233.0" prefHeight="88.0" prefWidth="199.0" style="-fx-background-color: #6C94A8;">
+         <children>
+            <Label alignment="CENTER" contentDisplay="CENTER" layoutX="34.0" layoutY="35.0" text="Управление записью" textFill="WHITE">
+               <font>
+                  <Font size="15.0" />
+               </font>
+            </Label>
+         </children>
+      </AnchorPane>
+      <AnchorPane layoutX="200.0" layoutY="57.0" prefHeight="744.0" prefWidth="1081.0" style="-fx-background-color: #557281;" visible="false">
+         <children>
+            <Pane layoutX="90.0" layoutY="87.0" prefHeight="170.0" prefWidth="355.0" style="-fx-background-color: #fff; -fx-background-radius: 10px;">
                <children>
-                  <HBox>
+                  <HBox layoutX="23.0" layoutY="37.0">
                      <children>
-                        <Label prefHeight="24.0" prefWidth="150.0" style="-fx-font-weight: 500; -fx-font-size: 18px;" text="ФИО пациента" textFill="WHITE">
-                           <font>
-                              <Font name="System Font" size="16.0" />
-                           </font>
-                        </Label>
-                        <TextField prefHeight="26.0" prefWidth="220.0" promptText="Введите фамилию" style="-fx-font-size: 18px;">
+                        <VBox>
+                           <children>
+                              <Label text="Врач">
+                                 <VBox.margin>
+                                    <Insets bottom="10.0" top="5.0" />
+                                 </VBox.margin>
+                              </Label>
+                              <Label text="Специализация">
+                                 <VBox.margin>
+                                    <Insets bottom="10.0" top="5.0" />
+                                 </VBox.margin>
+                              </Label>
+                              <Label text="Дата">
+                                 <VBox.margin>
+                                    <Insets bottom="10.0" top="5.0" />
+                                 </VBox.margin>
+                              </Label>
+                           </children>
                            <HBox.margin>
                               <Insets left="10.0" />
                            </HBox.margin>
-                        </TextField>
-                     </children>
-                     <VBox.margin>
-                        <Insets bottom="7.0" left="10.0" top="7.0" />
-                     </VBox.margin>
-                  </HBox>
-                  <HBox>
-                     <children>
-                        <Label prefHeight="24.0" prefWidth="150.0" style="-fx-font-weight: 500; -fx-font-size: 18px;" text="Пол" textFill="WHITE">
-                           <font>
-                              <Font name="System Font" size="16.0" />
-                           </font>
-                        </Label>
-                        <TextField prefHeight="26.0" prefWidth="220.0" promptText="Введите имя" style="-fx-font-size: 18px;">
+                        </VBox>
+                        <VBox prefHeight="96.0" prefWidth="203.0">
+                           <children>
+                              <ComboBox prefWidth="200.0">
+                                 <VBox.margin>
+                                    <Insets bottom="5.0" top="1.0" />
+                                 </VBox.margin>
+                              </ComboBox>
+                              <ComboBox prefWidth="200.0">
+                                 <VBox.margin>
+                                    <Insets bottom="5.0" top="1.0" />
+                                 </VBox.margin>
+                              </ComboBox>
+                              <TextField prefHeight="26.0" prefWidth="200.0">
+                                 <VBox.margin>
+                                    <Insets bottom="5.0" top="3.0" />
+                                 </VBox.margin>
+                              </TextField>
+                           </children>
                            <HBox.margin>
                               <Insets left="10.0" />
                            </HBox.margin>
-                        </TextField>
+                        </VBox>
                      </children>
-                     <VBox.margin>
-                        <Insets bottom="7.0" left="10.0" top="7.0" />
-                     </VBox.margin>
-                  </HBox>
-                  <HBox>
-                     <children>
-                        <Label prefHeight="24.0" prefWidth="150.0" style="-fx-font-weight: 500; -fx-font-size: 18px;" text="Дата рождения" textFill="WHITE">
-                           <font>
-                              <Font name="System Font" size="16.0" />
-                           </font>
-                        </Label>
-                        <TextField prefHeight="26.0" prefWidth="220.0" promptText="Введите отчество" style="-fx-font-size: 18px;">
-                           <HBox.margin>
-                              <Insets left="10.0" />
-                           </HBox.margin>
-                        </TextField>
-                     </children>
-                     <VBox.margin>
-                        <Insets bottom="7.0" left="10.0" top="7.0" />
-                     </VBox.margin>
-                  </HBox>
-                  <HBox>
-                     <children>
-                        <Label prefHeight="24.0" prefWidth="150.0" style="-fx-font-weight: 500; -fx-font-size: 18px;" text="Телефон" textFill="WHITE">
-                           <font>
-                              <Font name="System Font" size="16.0" />
-                           </font>
-                        </Label>
-                        <TextField prefHeight="26.0" prefWidth="220.0" promptText="Введите дату" style="-fx-font-size: 18px;">
-                           <HBox.margin>
-                              <Insets left="10.0" />
-                           </HBox.margin>
-                        </TextField>
-                     </children>
-                     <VBox.margin>
-                        <Insets bottom="7.0" left="10.0" top="7.0" />
-                     </VBox.margin>
-                  </HBox>
-                  <HBox>
-                     <children>
-                        <Label prefHeight="24.0" prefWidth="150.0" style="-fx-font-weight: 500; -fx-font-size: 18px;" text="Почта" textFill="WHITE">
-                           <font>
-                              <Font name="System Font" size="16.0" />
-                           </font>
-                        </Label>
-                        <TextField prefHeight="26.0" prefWidth="220.0" promptText="Введите пол" style="-fx-font-size: 18px;">
-                           <HBox.margin>
-                              <Insets left="10.0" />
-                           </HBox.margin>
-                        </TextField>
-                     </children>
-                     <VBox.margin>
-                        <Insets bottom="7.0" left="10.0" top="7.0" />
-                     </VBox.margin>
                   </HBox>
                </children>
-               <padding>
-                  <Insets top="10.0" />
-               </padding>
-            </VBox>
+            </Pane>
+            <Label layoutX="519.0" layoutY="306.0" text="Список пациентов" textFill="WHITE">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Label>
+            <ScrollPane layoutX="517.0" layoutY="335.0" prefHeight="264.0" prefWidth="504.0">
+              <content>
+                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="317.0" prefWidth="309.0" />
+              </content>
+            </ScrollPane>
+            <ScrollPane layoutX="517.0" layoutY="87.0" prefHeight="170.0" prefWidth="504.0">
+              <content>
+                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="201.0" prefWidth="487.0" />
+              </content>
+            </ScrollPane>
+            <Label layoutX="519.0" layoutY="60.0" text="Свободные записи по запросу" textFill="WHITE">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Label>
+            <Pane layoutX="90.0" layoutY="335.0" prefHeight="264.0" prefWidth="355.0" style="-fx-background-color: #fff; -fx-background-radius: 10px;">
+               <children>
+                  <HBox layoutX="23.0" layoutY="37.0" prefHeight="177.0" prefWidth="315.0">
+                     <children>
+                        <VBox>
+                           <children>
+                              <Label text="Врач">
+                                 <VBox.margin>
+                                    <Insets bottom="10.0" top="5.0" />
+                                 </VBox.margin>
+                              </Label>
+                              <Label text="Специализация">
+                                 <VBox.margin>
+                                    <Insets bottom="10.0" top="5.0" />
+                                 </VBox.margin>
+                              </Label>
+                              <Label text="Дата">
+                                 <VBox.margin>
+                                    <Insets bottom="10.0" top="5.0" />
+                                 </VBox.margin>
+                              </Label>
+                              <Label text="Время">
+                                 <VBox.margin>
+                                    <Insets bottom="10.0" top="5.0" />
+                                 </VBox.margin>
+                              </Label>
+                              <Label text="Пациент">
+                                 <VBox.margin>
+                                    <Insets bottom="10.0" top="5.0" />
+                                 </VBox.margin>
+                              </Label>
+                           </children>
+                           <HBox.margin>
+                              <Insets left="10.0" />
+                           </HBox.margin>
+                        </VBox>
+                        <VBox prefHeight="96.0" prefWidth="203.0">
+                           <HBox.margin>
+                              <Insets left="10.0" />
+                           </HBox.margin>
+                           <children>
+                              <TextField prefHeight="26.0" prefWidth="200.0">
+                                 <VBox.margin>
+                                    <Insets bottom="5.0" top="1.0" />
+                                 </VBox.margin>
+                              </TextField>
+                              <TextField prefHeight="26.0" prefWidth="200.0">
+                                 <VBox.margin>
+                                    <Insets bottom="5.0" top="1.0" />
+                                 </VBox.margin>
+                              </TextField>
+                              <TextField prefHeight="26.0" prefWidth="200.0">
+                                 <VBox.margin>
+                                    <Insets bottom="5.0" top="1.0" />
+                                 </VBox.margin>
+                              </TextField>
+                              <TextField prefHeight="26.0" prefWidth="200.0">
+                                 <VBox.margin>
+                                    <Insets bottom="5.0" top="1.0" />
+                                 </VBox.margin>
+                              </TextField>
+                              <TextField prefHeight="26.0" prefWidth="200.0">
+                                 <VBox.margin>
+                                    <Insets bottom="5.0" top="1.0" />
+                                 </VBox.margin>
+                              </TextField>
+                           </children>
+                        </VBox>
+                     </children>
+                  </HBox>
+                  <Button layoutX="218.0" layoutY="225.0" mnemonicParsing="false" style="-fx-background-color: #85c6ec;" text="Добавить запись" />
+               </children>
+            </Pane>
+            <Label layoutX="97.0" layoutY="60.0" text="Поиск свободных записей" textFill="WHITE">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Label>
+            <Label layoutX="97.0" layoutY="306.0" text="Информация о записи пациента" textFill="WHITE">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Label>
          </children>
-      </Pane>
-      <HBox layoutX="542.0" layoutY="110.0" prefHeight="673.0" prefWidth="608.0" style="-fx-border-color: #6C94A8;">
+      </AnchorPane>
+      <AnchorPane layoutX="200.0" layoutY="57.0" prefHeight="744.0" prefWidth="1081.0" style="-fx-background-color: #557281;" visible="false">
          <children>
-            <VBox prefHeight="710.0" prefWidth="368.0" />
-            <VBox prefHeight="671.0" prefWidth="140.0" />
-            <VBox prefHeight="671.0" prefWidth="125.0" />
+            <Pane layoutX="97.0" layoutY="83.0" prefHeight="276.0" prefWidth="355.0" style="-fx-background-color: #fff; -fx-background-radius: 10px;">
+               <children>
+                  <HBox layoutX="23.0" layoutY="37.0" prefHeight="177.0" prefWidth="315.0">
+                     <children>
+                        <VBox>
+                           <children>
+                              <Label text="ФИО">
+                                 <VBox.margin>
+                                    <Insets bottom="10.0" top="5.0" />
+                                 </VBox.margin>
+                              </Label>
+                              <Label text="Пол">
+                                 <VBox.margin>
+                                    <Insets bottom="10.0" top="5.0" />
+                                 </VBox.margin>
+                              </Label>
+                              <Label text="Дата рождения">
+                                 <VBox.margin>
+                                    <Insets bottom="10.0" top="5.0" />
+                                 </VBox.margin>
+                              </Label>
+                              <Label text="Телефон">
+                                 <VBox.margin>
+                                    <Insets bottom="10.0" top="5.0" />
+                                 </VBox.margin>
+                              </Label>
+                              <Label text="Почта">
+                                 <VBox.margin>
+                                    <Insets bottom="10.0" top="5.0" />
+                                 </VBox.margin>
+                              </Label>
+                           </children>
+                           <HBox.margin>
+                              <Insets left="10.0" />
+                           </HBox.margin>
+                        </VBox>
+                        <VBox prefHeight="96.0" prefWidth="203.0">
+                           <HBox.margin>
+                              <Insets left="10.0" />
+                           </HBox.margin>
+                           <children>
+                              <TextField prefHeight="26.0" prefWidth="200.0">
+                                 <VBox.margin>
+                                    <Insets bottom="5.0" top="1.0" />
+                                 </VBox.margin>
+                              </TextField>
+                              <TextField prefHeight="26.0" prefWidth="200.0">
+                                 <VBox.margin>
+                                    <Insets bottom="5.0" top="1.0" />
+                                 </VBox.margin>
+                              </TextField>
+                              <TextField prefHeight="26.0" prefWidth="200.0">
+                                 <VBox.margin>
+                                    <Insets bottom="5.0" top="1.0" />
+                                 </VBox.margin>
+                              </TextField>
+                              <TextField prefHeight="26.0" prefWidth="200.0">
+                                 <VBox.margin>
+                                    <Insets bottom="5.0" top="1.0" />
+                                 </VBox.margin>
+                              </TextField>
+                              <TextField prefHeight="26.0" prefWidth="200.0">
+                                 <VBox.margin>
+                                    <Insets bottom="5.0" top="1.0" />
+                                 </VBox.margin>
+                              </TextField>
+                           </children>
+                        </VBox>
+                     </children>
+                  </HBox>
+                  <Button layoutX="110.0" layoutY="215.0" mnemonicParsing="false" style="-fx-background-color: #85c6ec;" text="Добавить пациента" />
+               </children>
+            </Pane>
+            <Label layoutX="114.0" layoutY="45.0" text="Добавить нового пациента" textFill="WHITE">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Label>
          </children>
-      </HBox>
-      <Label alignment="CENTER" layoutX="543.0" layoutY="74.0" prefHeight="40.0" prefWidth="192.0" style="-fx-font-weight: 500; -fx-font-size: 20px;" text="Пациент" textFill="WHITE" />
-      <Label alignment="CENTER" layoutX="902.0" layoutY="74.0" prefHeight="40.0" prefWidth="116.0" style="-fx-font-weight: 500; -fx-font-size: 20px;" text="Время" textFill="WHITE" />
-      <Label alignment="CENTER" layoutX="1022.0" layoutY="75.0" prefHeight="40.0" prefWidth="124.0" style="-fx-font-weight: 500; -fx-font-size: 20px;" text="Дата" textFill="WHITE" />
+      </AnchorPane>
+      <AnchorPane layoutX="200.0" layoutY="57.0" prefHeight="744.0" prefWidth="1081.0" style="-fx-background-color: #557281;">
+         <children>
+            <Pane layoutX="90.0" layoutY="96.0" prefHeight="103.0" prefWidth="355.0" style="-fx-background-color: #fff; -fx-background-radius: 10px;">
+               <children>
+                  <HBox layoutX="23.0" layoutY="37.0">
+                     <children>
+                        <VBox>
+                           <children>
+                              <Label text="Пациент">
+                                 <VBox.margin>
+                                    <Insets bottom="10.0" top="5.0" />
+                                 </VBox.margin>
+                              </Label>
+                           </children>
+                           <HBox.margin>
+                              <Insets left="10.0" />
+                           </HBox.margin>
+                        </VBox>
+                        <VBox prefHeight="14.0" prefWidth="247.0">
+                           <children>
+                              <TextField prefHeight="26.0" prefWidth="227.0">
+                                 <VBox.margin>
+                                    <Insets bottom="5.0" top="3.0" />
+                                 </VBox.margin>
+                              </TextField>
+                           </children>
+                           <HBox.margin>
+                              <Insets left="10.0" />
+                           </HBox.margin>
+                        </VBox>
+                     </children>
+                  </HBox>
+               </children>
+            </Pane>
+            <ScrollPane layoutX="517.0" layoutY="87.0" prefHeight="170.0" prefWidth="504.0">
+               <content>
+                  <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="201.0" prefWidth="487.0" />
+               </content>
+            </ScrollPane>
+            <Label layoutX="519.0" layoutY="60.0" text="Записи пациента" textFill="WHITE">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Label>
+            <Pane layoutX="90.0" layoutY="335.0" prefHeight="264.0" prefWidth="355.0" style="-fx-background-color: #fff; -fx-background-radius: 10px;">
+               <children>
+                  <HBox layoutX="23.0" layoutY="37.0" prefHeight="177.0" prefWidth="315.0">
+                     <children>
+                        <VBox>
+                           <children>
+                              <Label text="Врач">
+                                 <VBox.margin>
+                                    <Insets bottom="10.0" top="5.0" />
+                                 </VBox.margin>
+                              </Label>
+                              <Label text="Специализация">
+                                 <VBox.margin>
+                                    <Insets bottom="10.0" top="5.0" />
+                                 </VBox.margin>
+                              </Label>
+                              <Label text="Дата">
+                                 <VBox.margin>
+                                    <Insets bottom="10.0" top="5.0" />
+                                 </VBox.margin>
+                              </Label>
+                              <Label text="Время">
+                                 <VBox.margin>
+                                    <Insets bottom="10.0" top="5.0" />
+                                 </VBox.margin>
+                              </Label>
+                              <Label text="Пациент">
+                                 <VBox.margin>
+                                    <Insets bottom="10.0" top="5.0" />
+                                 </VBox.margin>
+                              </Label>
+                           </children>
+                           <HBox.margin>
+                              <Insets left="10.0" />
+                           </HBox.margin>
+                        </VBox>
+                        <VBox prefHeight="96.0" prefWidth="203.0">
+                           <HBox.margin>
+                              <Insets left="10.0" />
+                           </HBox.margin>
+                           <children>
+                              <TextField prefHeight="26.0" prefWidth="200.0">
+                                 <VBox.margin>
+                                    <Insets bottom="5.0" top="1.0" />
+                                 </VBox.margin>
+                              </TextField>
+                              <TextField prefHeight="26.0" prefWidth="200.0">
+                                 <VBox.margin>
+                                    <Insets bottom="5.0" top="1.0" />
+                                 </VBox.margin>
+                              </TextField>
+                              <TextField prefHeight="26.0" prefWidth="200.0">
+                                 <VBox.margin>
+                                    <Insets bottom="5.0" top="1.0" />
+                                 </VBox.margin>
+                              </TextField>
+                              <TextField prefHeight="26.0" prefWidth="200.0">
+                                 <VBox.margin>
+                                    <Insets bottom="5.0" top="1.0" />
+                                 </VBox.margin>
+                              </TextField>
+                              <TextField prefHeight="26.0" prefWidth="200.0">
+                                 <VBox.margin>
+                                    <Insets bottom="5.0" top="1.0" />
+                                 </VBox.margin>
+                              </TextField>
+                           </children>
+                        </VBox>
+                     </children>
+                  </HBox>
+                  <Button layoutX="218.0" layoutY="225.0" mnemonicParsing="false" style="-fx-background-color: #fe6767;" text="Удалить запись" />
+               </children>
+            </Pane>
+            <Label layoutX="97.0" layoutY="60.0" text="Поиск записей пациента" textFill="WHITE">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Label>
+            <Label layoutX="97.0" layoutY="306.0" text="Информация о записи пациента" textFill="WHITE">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Label>
+         </children>
+      </AnchorPane>
    </children>
 </AnchorPane>

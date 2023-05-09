@@ -1,7 +1,6 @@
 package com.example.course.controllers;
 import com.example.course.enities.*;
 import com.example.course.repositories.*;
-import jakarta.transaction.Transactional;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
@@ -256,29 +255,70 @@ public class OwnerController {
         deleteEmployeeButton.setVisible(true);
         successDeleteInput.setVisible(true);
     }
+    @FXML
+    private Label procedureId;
 
     @FXML
     void showDeleteProcedure(ActionEvent event) {
-
+        deleteProcedureButton.setVisible(true);
+        successProcedureDeleteInput.setVisible(true);
     }
+
+    @FXML
+    private Button saveProcedureChangesButton;
+
     @FXML
     void saveProcedureChanges(ActionEvent event) {
-
+        saveProcedureChangesButton.setText("Сохранить изменения");
+        if (procedureId.getText() != null){
+            Optional<Procedure> procedureOptional = procedureRepo.findById(Long.valueOf(procedureId.getText()));
+            procedureOptional.map(o->{
+                o.setName(procedureNameInput.getText());
+                o.setCost(Double.parseDouble(procedureCostInput.getText()));
+                procedureRepo.save(o);
+               return null;
+            });
+        }else{
+            Procedure procedure = new Procedure();
+            procedure.setName(procedureNameInput.getText());
+            procedure.setCost(Double.parseDouble(procedureCostInput.getText()));
+            procedureRepo.save(procedure);
+        }
+        showProcedureFun();
     }
     @FXML
     void deleteProcedure(ActionEvent event) {
-
+        if(successProcedureDeleteInput.getText().equals("Подтвердить") || successProcedureDeleteInput.getText().equals("подтвердить")) {
+            System.out.println(procedureId.getText());
+            if (procedureId.getText() != null) {
+                procedureRepo.deleteProcedure(Long.valueOf(procedureId.getText()));
+            }
+            showProcedureFun();
+            successProcedureDeleteInput.setText(null);
+        }
     }
     @FXML
     void addNewProcedure(ActionEvent event) {
-
+        showProcedureFun();
+        saveProcedureChangesButton.setText("Добавить");
     }
+    @FXML
+    private TextField successProcedureDeleteInput;
 
     @FXML
     void showProcedure(MouseEvent event) {
         hide();
         procedureField.setVisible(true);
-        List<Procedure> procedureList = procedureRepo.findAllByNameContains("");
+        showProcedureFun();
+    }
+
+    private void showProcedureFun(){
+        successProcedureDeleteInput.setVisible(false);
+        deleteProcedureButton.setVisible(false);
+        procedureId.setText(null);
+        procedureCostInput.setText(null);
+        procedureNameInput.setText(null);
+        List<Procedure> procedureList = procedureRepo.findAllByNameContainsOrderByNameAsc("");
         boxOfProcedures.getChildren().clear();
         for(Procedure o : procedureList){
             Label label = new Label(o.getName() + " - " + o.getCost());
@@ -290,6 +330,13 @@ public class OwnerController {
             anchorPane.getChildren().add(label);
             anchorPane.setStyle("-fx-border-color: #000000");
             anchorPane.setPrefHeight(30d);
+            anchorPane.setOnMouseClicked(mouseEvent -> {
+                procedureNameInput.setText(o.getName());
+                procedureCostInput.setText(String.valueOf(o.getCost()));
+                procedureId.setText(String.valueOf(o.getId()));
+                successProcedureDeleteInput.setVisible(false);
+                deleteProcedureButton.setVisible(false);
+            });
             boxOfProcedures.getChildren().add(anchorPane);
         }
     }
