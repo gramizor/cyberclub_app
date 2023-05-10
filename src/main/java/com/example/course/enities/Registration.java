@@ -9,6 +9,7 @@ import lombok.Setter;
 
 import java.sql.Date;
 import java.sql.Time;
+import java.time.LocalDate;
 
 @Entity
 @Getter
@@ -24,14 +25,14 @@ public class Registration {
     private long id;
 
     @Basic
-    private Date date;
+    private LocalDate date;
 
     @Basic
     private Time time;
 
     private String status;
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "patient_id")
     private Patient patient;
 
@@ -41,7 +42,7 @@ public class Registration {
             mappedBy = "registration")
     private Reception reception;
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "employee_id")
     private Employee employee;
 }

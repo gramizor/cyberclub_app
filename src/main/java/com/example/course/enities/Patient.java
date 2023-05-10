@@ -22,8 +22,7 @@ public class Patient {
 
     private String name;
 
-    @Basic
-    private Date DOB;
+    private String DOB;
 
     private String gender;
 

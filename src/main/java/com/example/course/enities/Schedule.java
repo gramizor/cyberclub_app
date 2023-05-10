@@ -1,13 +1,11 @@
 package com.example.course.enities;
 
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 
 import java.sql.Date;
 import java.sql.Time;
+import java.time.LocalDate;
 import java.util.List;
 
 @Entity
@@ -15,6 +13,7 @@ import java.util.List;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
+@ToString
 @Table(name = "schedule")
 public class Schedule {
 
@@ -22,11 +21,11 @@ public class Schedule {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
 
-    @ManyToMany(mappedBy = "schedule")
+    @ManyToMany(fetch = FetchType.EAGER, mappedBy = "schedule")
     private List<Employee> employee;
 
     @Basic
-    private Date date;
+    private LocalDate date;
 
     @Basic
     private Time time;

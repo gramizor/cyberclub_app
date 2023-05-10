@@ -64,7 +64,7 @@
             </Label>
             <ScrollPane layoutX="637.0" layoutY="116.0" prefHeight="566.0" prefWidth="418.0">
                <content>
-                  <VBox fx:id="boxOfProcedures" prefHeight="551.0" prefWidth="403.0" style="-fx-background-color: #ffffff; -fx-border-color: #000000;" />
+                  <VBox fx:id="boxOfProcedures" prefHeight="551.0" prefWidth="403.0" style="-fx-background-color: #ffffff;" />
                </content>
             </ScrollPane>
          </children>

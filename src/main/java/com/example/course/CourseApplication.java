@@ -22,7 +22,7 @@ public class CourseApplication extends Application{
     @Override
     public void init() throws Exception {
         springContext = SpringApplication.run(CourseApplication.class);
-        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/fxmlScenes/ownerScene.fxml"));
+        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/fxmlScenes/reception.fxml"));
         fxmlLoader.setControllerFactory(springContext::getBean);
         rootNode = fxmlLoader.load();
     }
