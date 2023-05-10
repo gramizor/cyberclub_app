@@ -179,7 +179,7 @@ public class ReceptionController {
         freeRegList.getChildren().clear();
         for(FreeRegModel o : freeRegModelList){
             o.getScheduleList().forEach(s->{
-                Label label = new Label(s.getDate() + " - " + s.getTime() + " - " + o.getEmployee().getName());
+                Label label = new Label(s.getDate() + " - " + s.getTime() + " - " + o.getEmployee().getName() + " " + o.getEmployee().getSpecialization().getName());
                 AnchorPane anchorPane = new AnchorPane();
                 AnchorPane.setLeftAnchor(label, 10d);
                 AnchorPane.setRightAnchor(label, 10d);

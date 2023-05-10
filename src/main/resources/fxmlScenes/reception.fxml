@@ -113,19 +113,19 @@
                   <Button layoutX="262.0" layoutY="151.0" mnemonicParsing="false" onAction="#findFreeReg" style="-fx-background-color: #85c6ec;" text="Поиск" />
                </children>
             </Pane>
-            <Label layoutX="519.0" layoutY="306.0" text="Список пациентов" textFill="WHITE">
+            <Label layoutX="522.0" layoutY="394.0" text="Список пациентов" textFill="WHITE">
                <font>
                   <Font size="18.0" />
                </font>
             </Label>
-            <ScrollPane layoutX="517.0" layoutY="335.0" prefHeight="264.0" prefWidth="504.0">
+            <ScrollPane layoutX="466.0" layoutY="423.0" prefHeight="264.0" prefWidth="558.0">
                <content>
-                  <VBox fx:id="patientListBox" prefHeight="260.0" prefWidth="487.0" />
+                  <VBox fx:id="patientListBox" prefHeight="271.0" prefWidth="539.0" />
                </content>
             </ScrollPane>
-            <ScrollPane layoutX="517.0" layoutY="87.0" prefHeight="170.0" prefWidth="504.0">
+            <ScrollPane layoutX="467.0" layoutY="87.0" prefHeight="297.0" prefWidth="554.0">
                <content>
-                  <VBox fx:id="freeRegList" prefHeight="166.0" prefWidth="488.0" />
+                  <VBox fx:id="freeRegList" prefHeight="302.0" prefWidth="534.0" />
                </content>
             </ScrollPane>
             <Label layoutX="519.0" layoutY="60.0" text="Свободные записи по запросу" textFill="WHITE">
@@ -133,7 +133,7 @@
                   <Font size="18.0" />
                </font>
             </Label>
-            <Pane layoutX="90.0" layoutY="335.0" prefHeight="264.0" prefWidth="355.0" style="-fx-background-color: #fff; -fx-background-radius: 10px;">
+            <Pane layoutX="85.0" layoutY="425.0" prefHeight="264.0" prefWidth="355.0" style="-fx-background-color: #fff; -fx-background-radius: 10px;">
                <children>
                   <HBox layoutX="23.0" layoutY="37.0" prefHeight="177.0" prefWidth="315.0">
                      <children>
@@ -212,7 +212,7 @@
                   <Font size="18.0" />
                </font>
             </Label>
-            <Label layoutX="97.0" layoutY="306.0" text="Информация о записи пациента" textFill="WHITE">
+            <Label layoutX="107.0" layoutY="392.0" text="Информация о записи пациента" textFill="WHITE">
                <font>
                   <Font size="18.0" />
                </font>
