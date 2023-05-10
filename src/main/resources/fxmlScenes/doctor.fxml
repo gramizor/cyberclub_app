@@ -15,7 +15,7 @@
 
 <AnchorPane prefHeight="801.0" prefWidth="1281.0" style="-fx-background-color: #557281;" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.course.controllers.DoctorController">
    <children>
-      <AnchorPane fx:id="receptionField" layoutX="256.0" layoutY="33.0">
+      <AnchorPane fx:id="receptionField" layoutX="284.0" layoutY="30.0" prefWidth="927.0">
          <children>
             <HBox layoutY="101.0">
                <children>
@@ -175,7 +175,7 @@
                   </Label>
                </children>
             </AnchorPane>
-            <Button layoutX="14.0" layoutY="737.0" mnemonicParsing="false" onAction="#quit" prefHeight="50.0" prefWidth="159.0" style="-fx-background-color: #a60000;" text="Выйти" textFill="WHITE">
+            <Button layoutX="39.0" layoutY="164.0" mnemonicParsing="false" onAction="#quit" prefHeight="50.0" prefWidth="159.0" style="-fx-background-color: #a60000;" text="Выйти" textFill="WHITE">
                <font>
                   <Font size="20.0" />
                </font>

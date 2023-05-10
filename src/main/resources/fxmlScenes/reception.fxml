@@ -443,7 +443,7 @@
             </Label>
          </children>
       </AnchorPane>
-      <Button layoutX="20.0" layoutY="736.0" mnemonicParsing="false" onAction="#quit" prefHeight="50.0" prefWidth="159.0" style="-fx-background-color: #a60000;" text="Выйти" textFill="WHITE">
+      <Button layoutX="18.0" layoutY="360.0" mnemonicParsing="false" onAction="#quit" prefHeight="50.0" prefWidth="159.0" style="-fx-background-color: #a60000;" text="Выйти" textFill="WHITE">
          <font>
             <Font size="20.0" />
          </font>
