@@ -340,4 +340,9 @@ public class OwnerController {
         }
     }
 
+    @FXML
+    void quit(ActionEvent event) {
+        boxOfProcedures.getScene().getWindow().hide();
+    }
+
 }

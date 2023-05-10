@@ -170,6 +170,11 @@ public class ReceptionController {
             printSchedules(freeRegModels);
         }
     }
+
+    @FXML
+    void quit(ActionEvent event) {
+        freeRegList.getScene().getWindow().hide();
+    }
     private void printSchedules(List<FreeRegModel> freeRegModelList){
         freeRegList.getChildren().clear();
         for(FreeRegModel o : freeRegModelList){
