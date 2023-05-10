@@ -64,18 +64,18 @@
       </AnchorPane>
       <AnchorPane fx:id="fieldFreeReg" layoutX="200.0" layoutY="57.0" prefHeight="744.0" prefWidth="1081.0" style="-fx-background-color: #557281;">
          <children>
-            <Pane layoutX="90.0" layoutY="87.0" prefHeight="170.0" prefWidth="355.0" style="-fx-background-color: #fff; -fx-background-radius: 10px;">
+            <Pane layoutX="90.0" layoutY="87.0" prefHeight="195.0" prefWidth="355.0" style="-fx-background-color: #fff; -fx-background-radius: 10px;">
                <children>
                   <HBox layoutX="23.0" layoutY="37.0">
                      <children>
                         <VBox>
                            <children>
-                              <Label text="Врач">
+                              <Label text="Врач" visible="false">
                                  <VBox.margin>
                                     <Insets bottom="10.0" top="5.0" />
                                  </VBox.margin>
                               </Label>
-                              <Label text="Специализация">
+                              <Label text="Специализация" visible="false">
                                  <VBox.margin>
                                     <Insets bottom="10.0" top="5.0" />
                                  </VBox.margin>
@@ -92,12 +92,12 @@
                         </VBox>
                         <VBox prefHeight="96.0" prefWidth="203.0">
                            <children>
-                              <ComboBox fx:id="doctorFilter" prefHeight="26.0" prefWidth="205.0">
+                              <ComboBox fx:id="doctorFilter" prefHeight="26.0" prefWidth="205.0" visible="false">
                                  <VBox.margin>
                                     <Insets bottom="5.0" top="1.0" />
                                  </VBox.margin>
                               </ComboBox>
-                              <ComboBox fx:id="specFilter" prefHeight="26.0" prefWidth="206.0">
+                              <ComboBox fx:id="specFilter" prefHeight="26.0" prefWidth="206.0" visible="false">
                                  <VBox.margin>
                                     <Insets bottom="5.0" top="1.0" />
                                  </VBox.margin>
@@ -110,7 +110,7 @@
                         </VBox>
                      </children>
                   </HBox>
-                  <Button layoutX="282.0" layoutY="135.0" mnemonicParsing="false" onAction="#findFreeReg" style="-fx-background-color: #85c6ec;" text="Поиск" />
+                  <Button layoutX="262.0" layoutY="151.0" mnemonicParsing="false" onAction="#findFreeReg" style="-fx-background-color: #85c6ec;" text="Поиск" />
                </children>
             </Pane>
             <Label layoutX="519.0" layoutY="306.0" text="Список пациентов" textFill="WHITE">

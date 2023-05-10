@@ -202,6 +202,8 @@ public class OwnerController {
             em.setName(nameInput.getText());
             em.setJobTitle(jobTitleInput.getText());
             em.setNumber(numberInput.getText());
+            Specialization specialization = specializationRepo.findByName(specializationListComboBox.getValue());
+            em.setSpecialization(specialization);
             em.setLogin(loginInput.getText());
             em.setPassword(passwordInput.getText());
             Access access = accessRepo.findByName(accessListComboBox.getValue());

@@ -23,8 +23,6 @@ create table employees (
     name varchar(255),
     number varchar(255),
     password varchar(255),
-    patronymic varchar(255),
-    surname varchar(255),
     access_id bigint,
     dentistry_id bigint,
     primary key (id));
@@ -41,7 +39,7 @@ create table patients (
 
 create table procedure (
     id bigserial not null,
-    cost float(53) not null,
+    cost float(53) not null check ( cost > 0 ),
     name varchar(255),
     primary key (id));
 
