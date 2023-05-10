@@ -224,6 +224,7 @@ public class ReceptionController {
     void showEditReg(MouseEvent event) {
         hideFields();
         fieldEditReg.setVisible(true);
+        patientManagementInput.setText(null);
     }
 
     @FXML
@@ -297,12 +298,31 @@ public class ReceptionController {
     @FXML
     private VBox patientRegList;
     @FXML
+    private TextField managementInfoDate;
+
+    @FXML
+    private TextField managementInfoDoctor;
+
+    @FXML
+    private Label managementInfoId;
+
+    @FXML
+    private TextField managementInfoPatient;
+
+    @FXML
+    private TextField managementInfoSpec;
+
+    @FXML
+    private TextField managementInfoTime;
+    @FXML
     void showPatientManagementList(ActionEvent event) {
-        List<Registration> registrationList = registrationRepo.findByPatient_IdOrderByDateDesc(Long.valueOf(patientManagementId.getText()));
-        printRegistrations(registrationList);
+        if(patientManagementInput.getText()!=null){
+            printRegistrations();
+        }
     }
 
-    private void printRegistrations(List<Registration> registrationList){
+    private void printRegistrations(){
+        List<Registration> registrationList = registrationRepo.findByPatient_IdOrderByDateDesc(Long.valueOf(patientManagementId.getText()));
         patientRegList.getChildren().clear();
         for(Registration o : registrationList){
             Label label = new Label(o.getDate() + " - " + o.getTime() + " - " + o.getEmployee().getName() +" ("+ o.getEmployee().getSpecialization().getName()+")" );
@@ -315,8 +335,30 @@ public class ReceptionController {
             anchorPane.setStyle("-fx-border-color: #000000");
             anchorPane.setPrefHeight(30d);
             anchorPane.setOnMouseClicked(mouseEvent -> {
+                managementInfoDate.setText(o.getDate().toString());
+                managementInfoId.setText(String.valueOf(o.getId()));
+                managementInfoDoctor.setText(o.getEmployee().getName());
+                managementInfoPatient.setText(o.getPatient().getName());
+                managementInfoSpec.setText(o.getEmployee().getSpecialization().getName());
+                managementInfoTime.setText(o.getTime().toString());
             });
             patientRegList.getChildren().add(anchorPane);
         }
+    }
+    @FXML
+    void deleteReg(ActionEvent event) {
+        if(registrationRepo.existsById(Long.valueOf(managementInfoId.getText()))){
+            registrationRepo.deleteRegistration(Long.valueOf(managementInfoId.getText()));
+            clearManagementFields();
+            printRegistrations();
+        }
+    }
+    private void clearManagementFields(){
+        managementInfoDate.setText(null);
+        managementInfoId.setText(null);
+        managementInfoDoctor.setText(null);
+        managementInfoPatient.setText(null);
+        managementInfoSpec.setText(null);
+        managementInfoTime.setText(null);
     }
 }

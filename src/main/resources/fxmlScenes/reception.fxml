@@ -388,27 +388,27 @@
                               <Insets left="10.0" />
                            </HBox.margin>
                            <children>
-                              <TextField prefHeight="26.0" prefWidth="200.0">
+                              <TextField fx:id="managementInfoDoctor" prefHeight="26.0" prefWidth="200.0">
                                  <VBox.margin>
                                     <Insets bottom="5.0" top="1.0" />
                                  </VBox.margin>
                               </TextField>
-                              <TextField prefHeight="26.0" prefWidth="200.0">
+                              <TextField fx:id="managementInfoSpec" prefHeight="26.0" prefWidth="200.0">
                                  <VBox.margin>
                                     <Insets bottom="5.0" top="1.0" />
                                  </VBox.margin>
                               </TextField>
-                              <TextField prefHeight="26.0" prefWidth="200.0">
+                              <TextField fx:id="managementInfoDate" prefHeight="26.0" prefWidth="200.0">
                                  <VBox.margin>
                                     <Insets bottom="5.0" top="1.0" />
                                  </VBox.margin>
                               </TextField>
-                              <TextField prefHeight="26.0" prefWidth="200.0">
+                              <TextField fx:id="managementInfoTime" prefHeight="26.0" prefWidth="200.0">
                                  <VBox.margin>
                                     <Insets bottom="5.0" top="1.0" />
                                  </VBox.margin>
                               </TextField>
-                              <TextField prefHeight="26.0" prefWidth="200.0">
+                              <TextField fx:id="managementInfoPatient" prefHeight="26.0" prefWidth="200.0">
                                  <VBox.margin>
                                     <Insets bottom="5.0" top="1.0" />
                                  </VBox.margin>
@@ -417,7 +417,8 @@
                         </VBox>
                      </children>
                   </HBox>
-                  <Button layoutX="218.0" layoutY="225.0" mnemonicParsing="false" style="-fx-background-color: #fe6767;" text="Удалить запись" />
+                  <Button layoutX="218.0" layoutY="225.0" mnemonicParsing="false" onAction="#deleteReg" style="-fx-background-color: #fe6767;" text="Удалить запись" />
+                  <Label fx:id="managementInfoId" layoutX="95.0" layoutY="217.0" visible="false" />
                </children>
             </Pane>
             <Label layoutX="97.0" layoutY="60.0" text="Поиск записей пациента" textFill="WHITE">
