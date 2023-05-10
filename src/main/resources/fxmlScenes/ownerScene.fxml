@@ -22,7 +22,7 @@
                   <Cursor fx:constant="HAND" />
                </cursor>
             </Button>
-            <AnchorPane fx:id="procedureInfoField" layoutX="66.0" layoutY="116.0" prefHeight="191.0" prefWidth="474.0" style="-fx-background-color: #ffffff; -fx-border-color: #000000;">
+            <AnchorPane fx:id="procedureInfoField" layoutX="66.0" layoutY="116.0" prefHeight="191.0" prefWidth="474.0" style="-fx-background-color: #ffffff; -fx-background-radius: 10px;">
                <children>
                   <Label layoutX="14.0" layoutY="30.0" text="Название:" />
                   <Label layoutX="14.0" layoutY="60.0" text="Стоимость:" />
@@ -57,7 +57,7 @@
                   <Label fx:id="procedureId" layoutX="122.0" layoutY="118.0" visible="false" />
                </children>
             </AnchorPane>
-            <Label alignment="CENTER" contentDisplay="CENTER" layoutX="191.0" layoutY="71.0" text="Общая информация">
+            <Label alignment="CENTER" contentDisplay="CENTER" layoutX="191.0" layoutY="71.0" text="Общая информация" textFill="WHITE">
                <font>
                   <Font size="24.0" />
                </font>
