@@ -179,38 +179,40 @@ public class OwnerController {
     @FXML
     void saveChanges(ActionEvent event) {
         saveChangesButton.setText("Сохранить изменения");
-        if(employeeId.getText() != null) {
-            Optional<Employee> employee = employeeRepo.findById(Integer.valueOf(employeeId.getText()));
-            employee.map(o -> {
-                o.setName(nameInput.getText());
-                o.setJobTitle(jobTitleInput.getText());
-                o.setNumber(numberInput.getText());
-                o.setLogin(loginInput.getText());
-                o.setPassword(passwordInput.getText());
-                Access access = accessRepo.findByName(accessListComboBox.getValue());
-                o.setAccess(access);
+        if(numberInput.getText().length() == 11) {
+            if (employeeId.getText() != null) {
+                Optional<Employee> employee = employeeRepo.findById(Integer.valueOf(employeeId.getText()));
+                employee.map(o -> {
+                    o.setName(nameInput.getText());
+                    o.setJobTitle(jobTitleInput.getText());
+                    o.setNumber(numberInput.getText());
+                    o.setLogin(loginInput.getText());
+                    o.setPassword(passwordInput.getText());
+                    Access access = accessRepo.findByName(accessListComboBox.getValue());
+                    o.setAccess(access);
+                    Specialization specialization = specializationRepo.findByName(specializationListComboBox.getValue());
+                    o.setSpecialization(specialization);
+                    employeeRepo.save(o);
+                    return null;
+                });
+            } else {
+                Employee em = new Employee();
+                String address = dentistryListComboBox.getValue();
+                Dentistry dentistry = dentistryRepo.findByAddress(address);
+                em.setDentistry(dentistry);
+                em.setName(nameInput.getText());
+                em.setJobTitle(jobTitleInput.getText());
+                em.setNumber(numberInput.getText());
                 Specialization specialization = specializationRepo.findByName(specializationListComboBox.getValue());
-                o.setSpecialization(specialization);
-                employeeRepo.save(o);
-                return null;
-            });
-        }else{
-            Employee em = new Employee();
-            String address = dentistryListComboBox.getValue();
-            Dentistry dentistry = dentistryRepo.findByAddress(address);
-            em.setDentistry(dentistry);
-            em.setName(nameInput.getText());
-            em.setJobTitle(jobTitleInput.getText());
-            em.setNumber(numberInput.getText());
-            Specialization specialization = specializationRepo.findByName(specializationListComboBox.getValue());
-            em.setSpecialization(specialization);
-            em.setLogin(loginInput.getText());
-            em.setPassword(passwordInput.getText());
-            Access access = accessRepo.findByName(accessListComboBox.getValue());
-            em.setAccess(access);
-            employeeRepo.save(em);
+                em.setSpecialization(specialization);
+                em.setLogin(loginInput.getText());
+                em.setPassword(passwordInput.getText());
+                Access access = accessRepo.findByName(accessListComboBox.getValue());
+                em.setAccess(access);
+                employeeRepo.save(em);
+            }
+            dentistryChangedFun();
         }
-        dentistryChangedFun();
     }
 
     private void hide(){
@@ -272,21 +274,24 @@ public class OwnerController {
     @FXML
     void saveProcedureChanges(ActionEvent event) {
         saveProcedureChangesButton.setText("Сохранить изменения");
-        if (procedureId.getText() != null){
-            Optional<Procedure> procedureOptional = procedureRepo.findById(Long.valueOf(procedureId.getText()));
-            procedureOptional.map(o->{
-                o.setName(procedureNameInput.getText());
-                o.setCost(Double.parseDouble(procedureCostInput.getText()));
-                procedureRepo.save(o);
-               return null;
-            });
-        }else{
-            Procedure procedure = new Procedure();
-            procedure.setName(procedureNameInput.getText());
-            procedure.setCost(Double.parseDouble(procedureCostInput.getText()));
-            procedureRepo.save(procedure);
+        String costCheck = procedureCostInput.getText();
+        if(Double.parseDouble(costCheck) >=0) {
+            if (procedureId.getText() != null) {
+                Optional<Procedure> procedureOptional = procedureRepo.findById(Long.valueOf(procedureId.getText()));
+                procedureOptional.map(o -> {
+                    o.setName(procedureNameInput.getText());
+                    o.setCost(Double.parseDouble(procedureCostInput.getText()));
+                    procedureRepo.save(o);
+                    return null;
+                });
+            } else {
+                Procedure procedure = new Procedure();
+                procedure.setName(procedureNameInput.getText());
+                procedure.setCost(Double.parseDouble(procedureCostInput.getText()));
+                procedureRepo.save(procedure);
+            }
+            showProcedureFun();
         }
-        showProcedureFun();
     }
     @FXML
     void deleteProcedure(ActionEvent event) {

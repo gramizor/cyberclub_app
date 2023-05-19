@@ -219,7 +219,7 @@
             </Label>
          </children>
       </AnchorPane>
-      <AnchorPane fx:id="fieldNewPatient" layoutX="200.0" layoutY="57.0" prefHeight="744.0" prefWidth="1081.0" style="-fx-background-color: #557281;" visible="false">
+      <AnchorPane fx:id="fieldNewPatient" layoutX="200.0" layoutY="57.0" prefHeight="744.0" prefWidth="1081.0" style="-fx-background-color: #557281;">
          <children>
             <Pane layoutX="97.0" layoutY="83.0" prefHeight="276.0" prefWidth="355.0" style="-fx-background-color: #fff; -fx-background-radius: 10px;">
                <children>
@@ -272,11 +272,7 @@
                                     <Insets bottom="5.0" top="1.0" />
                                  </VBox.margin>
                               </TextField>
-                              <TextField fx:id="newPatientDOBInput" prefHeight="26.0" prefWidth="200.0">
-                                 <VBox.margin>
-                                    <Insets bottom="5.0" top="1.0" />
-                                 </VBox.margin>
-                              </TextField>
+                              <DatePicker fx:id="newPatientDOBInput" prefHeight="26.0" prefWidth="202.0" />
                               <TextField fx:id="newPatientNumberInput" prefHeight="26.0" prefWidth="200.0">
                                  <VBox.margin>
                                     <Insets bottom="5.0" top="1.0" />

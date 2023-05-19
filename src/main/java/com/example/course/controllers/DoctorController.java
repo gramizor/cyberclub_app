@@ -1,18 +1,18 @@
 package com.example.course.controllers;
 
+import com.example.course.enities.Employee;
 import com.example.course.enities.Procedure;
 import com.example.course.enities.Reception;
 import com.example.course.enities.Registration;
+import com.example.course.repositories.EmployeeRepo;
 import com.example.course.repositories.ProcedureRepo;
 import com.example.course.repositories.ReceptionRepo;
 import com.example.course.repositories.RegistrationRepo;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.control.Button;
-import javafx.scene.control.Label;
-import javafx.scene.control.TextArea;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.scene.input.KeyEvent;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.VBox;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -56,10 +56,22 @@ public class DoctorController {
     private AnchorPane receptionField;
     @FXML
     private TextArea receptionComplaints;
+    @FXML
+    private ComboBox<String> doctorComboBox;
+
+    @FXML
+    void resetDoctors(MouseEvent event) {
+        List<Employee> employeeList = employeeRepo.findAllByNameStartingWithOrderByNameAsc("");
+        doctorComboBox.getItems().clear();
+        doctorComboBox.setValue(null);
+        for(Employee e : employeeList){
+            doctorComboBox.getItems().add(e.getName());
+        }
+    }
 
     @FXML
     void resetRegistrations(ActionEvent event) {
-        List<Registration> registrationList = registrationRepo.findByDateOrderByTimeAsc(LocalDate.now());
+        List<Registration> registrationList = registrationRepo.findByDateAndEmployee_NameOrderByTimeAsc(LocalDate.now(), doctorComboBox.getValue());
         registrationListBox.getChildren().clear();
         for(Registration o : registrationList){
             Label label = new Label(o.getDate() + " - " + o.getTime() + " - " + o.getPatient().getName()+" (" + o.getEmployee().getName() + ")");
@@ -90,6 +102,8 @@ public class DoctorController {
         }
 
     }
+    @Autowired
+    private EmployeeRepo employeeRepo;
     public void swapToRegistrations(){
         registrationFields.setVisible(true);
         receptionField.setVisible(false);

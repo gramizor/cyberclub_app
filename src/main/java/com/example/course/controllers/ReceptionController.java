@@ -73,7 +73,7 @@ public class ReceptionController {
     private TextField infoTime;
 
     @FXML
-    private TextField newPatientDOBInput;
+    private DatePicker newPatientDOBInput;
 
     @FXML
     private TextField newPatientGenderInput;
@@ -98,18 +98,20 @@ public class ReceptionController {
 
     @FXML
     void addNewPatient(ActionEvent event) {
-        Patient patient = new Patient();
-        patient.setName(newPatientNameInput.getText());
-        patient.setMail(newPatientMailInput.getText());
-        patient.setDOB(newPatientDOBInput.getText());
-        patient.setGender(newPatientGenderInput.getText());
-        patient.setNumber(newPatientNumberInput.getText());
-        patientRepo.save(patient);
-        newPatientDOBInput.setText(null);
-        newPatientGenderInput.setText(null);
-        newPatientMailInput.setText(null);
-        newPatientNumberInput.setText(null);
-        newPatientNameInput.setText(null);
+        if(newPatientNumberInput.getText().length() == 11 && newPatientMailInput.getText().contains("@")) {
+            Patient patient = new Patient();
+            patient.setName(newPatientNameInput.getText());
+            patient.setMail(newPatientMailInput.getText());
+            patient.setDOB(newPatientDOBInput.getValue());
+            patient.setGender(newPatientGenderInput.getText());
+            patient.setNumber(newPatientNumberInput.getText());
+            patientRepo.save(patient);
+            newPatientDOBInput.setValue(null);
+            newPatientGenderInput.setText(null);
+            newPatientMailInput.setText(null);
+            newPatientNumberInput.setText(null);
+            newPatientNameInput.setText(null);
+        }
     }
 
     @FXML

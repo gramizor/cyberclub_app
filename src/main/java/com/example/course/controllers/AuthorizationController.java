@@ -54,7 +54,7 @@ public class AuthorizationController extends CourseApplication {
                             fxmlLoader.setControllerFactory(springContext::getBean);
                             Stage stage = new Stage();
                             Scene scene = new Scene(fxmlLoader.load());
-                            stage.setTitle("Здравствуйте, " + employee.getName());
+                            stage.setTitle(employee.getName());
                             stage.setScene(scene);
                             stage.show();
                         } catch (IOException e) {
@@ -67,7 +67,7 @@ public class AuthorizationController extends CourseApplication {
                             fxmlLoader.setControllerFactory(springContext::getBean);
                             Stage stage = new Stage();
                             Scene scene = new Scene(fxmlLoader.load());
-                            stage.setTitle("Здравствуйте, " + employee.getName());
+                            stage.setTitle(employee.getName());
                             stage.setScene(scene);
                             stage.show();
                         } catch (IOException e) {
@@ -80,7 +80,7 @@ public class AuthorizationController extends CourseApplication {
                             fxmlLoader.setControllerFactory(springContext::getBean);
                             Stage stage = new Stage();
                             Scene scene = new Scene(fxmlLoader.load());
-                            stage.setTitle("Здравствуйте, " + employee.getName());
+                            stage.setTitle(employee.getName());
                             stage.setScene(scene);
                             stage.show();
                         } catch (IOException e) {
