@@ -63,30 +63,35 @@ public class AuthorizationController extends CourseApplication {
         }else{
             User user = new User();
             user = userRepo.findByUsername(loginAuthInput.getText());
+            if(user != null){
+                if(!user.getPassword().equals(passwordAuthInput.getText())){
+                    error.setText("Неверный пароль");
+                }else{
+                    FXMLLoader fxmlLoader = new FXMLLoader(CourseApplication.class.getResource("/fxmlScenes/user.fxml"));
+                    fxmlLoader.setControllerFactory(springContext::getBean);
+                    Stage stage = new Stage();
+                    Scene scene = new Scene(fxmlLoader.load());
+                    stage.setScene(scene);
+                    stage.show();
+                    error.getScene().getWindow().hide();
+                }
+            }
             Admin admin = new Admin();
             admin = adminRepo.findByUsername(loginAuthInput.getText());
-            if(!user.getPassword().equals(passwordAuthInput.getText())){
-                error.setText("Неверный пароль");
-            }else{
-                FXMLLoader fxmlLoader = new FXMLLoader(CourseApplication.class.getResource("/fxmlScenes/user.fxml"));
-                fxmlLoader.setControllerFactory(springContext::getBean);
-                Stage stage = new Stage();
-                Scene scene = new Scene(fxmlLoader.load());
-                stage.setScene(scene);
-                stage.show();
-                error.getScene().getWindow().hide();
+            if(admin!=null){
+                if(!admin.getPassword().equals(passwordAuthInput.getText())){
+                    error.setText("Неверный пароль");
+                }else{
+                    FXMLLoader fxmlLoader = new FXMLLoader(CourseApplication.class.getResource("/fxmlScenes/admin.fxml"));
+                    fxmlLoader.setControllerFactory(springContext::getBean);
+                    Stage stage = new Stage();
+                    Scene scene = new Scene(fxmlLoader.load());
+                    stage.setScene(scene);
+                    stage.show();
+                    error.getScene().getWindow().hide();
+                }
             }
-            if(!admin.getPassword().equals(passwordAuthInput.getText())){
-                error.setText("Неверный пароль");
-            }else{
-                FXMLLoader fxmlLoader = new FXMLLoader(CourseApplication.class.getResource("/fxmlScenes/admin.fxml"));
-                fxmlLoader.setControllerFactory(springContext::getBean);
-                Stage stage = new Stage();
-                Scene scene = new Scene(fxmlLoader.load());
-                stage.setScene(scene);
-                stage.show();
-                error.getScene().getWindow().hide();
-            }
+
         }
     }
 
