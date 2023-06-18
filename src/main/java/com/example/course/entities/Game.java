@@ -1,4 +1,4 @@
-package com.example.course.enities;
+package com.example.course.entities;
 
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
@@ -13,17 +13,15 @@ import java.util.List;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-@Table(name = "accesses")
-public class Access {
+@Table(name = "games")
+public class Game {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long id;
+    private int id;
 
     private String name;
+    private String path;
 
-    @OneToMany(fetch = FetchType.EAGER,
-            cascade = CascadeType.ALL,
-            orphanRemoval = true,
-            mappedBy = "access")
-    private List<Employee> employee;
+    @ManyToMany(mappedBy = "game")
+    private List<Computer> computer;
 }
