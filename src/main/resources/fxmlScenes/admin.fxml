@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.Cursor?>
 <?import javafx.scene.control.Button?>
-<?import javafx.scene.control.ChoiceBox?>
 <?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
@@ -12,12 +12,21 @@
 
 <AnchorPane maxHeight="800" maxWidth="1080" minHeight="800" minWidth="1080" prefHeight="257.0" prefWidth="681.0" style="-fx-background-color: black;" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.course.controllers.AdminController">
    <children>
-      <AnchorPane layoutX="354.0" layoutY="187.0" prefHeight="561.0" prefWidth="635.0" style="-fx-background-color: adadad; -fx-background-radius: 10;">
+      <AnchorPane fx:id="editBalancePane" layoutX="354.0" layoutY="187.0" prefHeight="561.0" prefWidth="635.0" style="-fx-background-color: adadad; -fx-background-radius: 10;" visible="false">
          <children>
-            <ComboBox layoutX="308.0" layoutY="17.0" prefWidth="150.0" promptText="username" />
-            <VBox layoutX="14.0" layoutY="110.0" prefHeight="430.0" prefWidth="604.0" style="-fx-background-color: white;" />
-            <TextField layoutX="402.0" layoutY="53.0" prefHeight="25.0" prefWidth="103.0" promptText="введите сумму" />
-            <Button layoutX="515.0" layoutY="53.0" mnemonicParsing="false" onAction="#addBalance" prefHeight="25.0" prefWidth="103.0" text="Пополнить" />
+            <ComboBox fx:id="usernameList" layoutX="308.0" layoutY="17.0" onAction="#usernameListChoose" prefWidth="150.0" promptText="username">
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor></ComboBox>
+            <VBox fx:id="historyAmount" layoutX="14.0" layoutY="110.0" prefHeight="430.0" prefWidth="604.0" style="-fx-background-color: white;" />
+            <TextField fx:id="amountInput" layoutX="402.0" layoutY="53.0" prefHeight="25.0" prefWidth="103.0" promptText="введите сумму">
+               <cursor>
+                  <Cursor fx:constant="TEXT" />
+               </cursor></TextField>
+            <Button fx:id="addBalanceButton" layoutX="515.0" layoutY="53.0" mnemonicParsing="false" onAction="#addBalance" prefHeight="25.0" prefWidth="103.0" text="Пополнить">
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor></Button>
             <Text layoutX="14.0" layoutY="39.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Введите имя пользователя:" wrappingWidth="293.578125">
                <font>
                   <Font size="23.0" />
@@ -32,15 +41,19 @@
                </font></Text>
          </children>
       </AnchorPane>
-      <AnchorPane layoutX="354.0" layoutY="187.0" prefHeight="561.0" prefWidth="635.0" style="-fx-background-color: adadad; -fx-background-radius: 10;" visible="false">
+      <AnchorPane fx:id="statusPane" layoutX="354.0" layoutY="187.0" prefHeight="561.0" prefWidth="635.0" style="-fx-background-color: adadad; -fx-background-radius: 10;" visible="false">
          <children>
             <Text layoutX="35.0" layoutY="57.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Выберите статус компьютера" wrappingWidth="376.765625">
                <font>
                   <Font size="24.0" />
                </font>
             </Text>
-            <ChoiceBox layoutX="384.0" layoutY="35.0" prefWidth="150.0" />
-            <VBox layoutX="35.0" layoutY="89.0" prefHeight="453.0" prefWidth="563.0" style="-fx-background-color: white;" />
+            <VBox fx:id="statusTable" layoutX="35.0" layoutY="89.0" prefHeight="453.0" prefWidth="563.0" style="-fx-background-color: white;" />
+            <ComboBox layoutX="385.0" layoutY="36.0" prefWidth="150.0" promptText="статус">
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </ComboBox>
          </children>
       </AnchorPane>
       <AnchorPane layoutY="-1.0" prefHeight="135.0" prefWidth="1080.0" style="-fx-background-color: #666;">
@@ -50,32 +63,42 @@
                   <Font size="38.0" />
                </font>
             </Text>
+            <Text fx:id="error" fill="RED" layoutX="738.0" layoutY="81.0" strokeType="OUTSIDE" strokeWidth="0.0" />
          </children>
       </AnchorPane>
       <AnchorPane layoutY="134.0" prefHeight="666.0" prefWidth="243.0" style="-fx-background-color: #666;">
          <children>
             <AnchorPane prefHeight="153.0" prefWidth="243.0" style="-fx-background-color: #383838;">
                <children>
-                  <Button layoutX="8.0" layoutY="59.0" mnemonicParsing="false" onAction="#editBalance" prefHeight="34.0" prefWidth="228.0" text="Редактировать баланс пользователя">
+                  <Button fx:id="editBalanceButton" layoutX="8.0" layoutY="59.0" mnemonicParsing="false" onAction="#editBalance" prefHeight="34.0" prefWidth="228.0" text="Редактировать баланс пользователя">
                      <font>
                         <Font size="11.0" />
                      </font>
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
                   </Button>
                </children>
             </AnchorPane>
             <AnchorPane layoutY="152.0" prefHeight="153.0" prefWidth="243.0" style="-fx-background-color: #383838;">
                <children>
-                  <Button layoutX="8.0" layoutY="58.0" mnemonicParsing="false" onAction="#statusComputer" prefHeight="34.0" prefWidth="228.0" text="Проверить статус компьютеров">
+                  <Button fx:id="statusComputerButton" layoutX="8.0" layoutY="58.0" mnemonicParsing="false" onAction="#statusComputer" prefHeight="34.0" prefWidth="228.0" text="Проверить статус компьютеров">
                      <font>
                         <Font size="11.0" />
                      </font>
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
                   </Button>
                </children>
             </AnchorPane>
-            <Button layoutX="53.0" layoutY="618.0" mnemonicParsing="false" onAction="#logOut" prefHeight="34.0" prefWidth="138.0" text="Выйти">
+            <Button fx:id="logOutButton" layoutX="53.0" layoutY="618.0" mnemonicParsing="false" onAction="#logOut" prefHeight="34.0" prefWidth="138.0" text="Выйти">
                <font>
                   <Font size="11.0" />
                </font>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
             </Button>
          </children>
       </AnchorPane>

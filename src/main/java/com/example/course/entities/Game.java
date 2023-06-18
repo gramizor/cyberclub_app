@@ -21,6 +21,7 @@ public class Game {
 
     private String name;
     private String path;
+    private String description;
 
     @ManyToMany(mappedBy = "game")
     private List<Computer> computer;

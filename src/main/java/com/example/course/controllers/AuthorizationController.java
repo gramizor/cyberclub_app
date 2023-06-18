@@ -47,8 +47,12 @@ public class AuthorizationController extends CourseApplication {
     private TextField loginAuthInput;
     @FXML
     private PasswordField passwordAuthInput;
+
     @FXML
-    private Text error;
+    private Text errorAuth;
+
+    @FXML
+    private Text errorReg;
 
     @Autowired
     private UserRepo userRepo;
@@ -59,13 +63,13 @@ public class AuthorizationController extends CourseApplication {
     @FXML
     void authorization(ActionEvent event) {
         if(!userRepo.existsByUsername(loginAuthInput.getText()) && !adminRepo.existsByUsername(loginAuthInput.getText())){
-            error.setText("Пользователя нет");
+            errorAuth.setText("Пользователя нет");
         }else{
             User user = new User();
             user = userRepo.findByUsername(loginAuthInput.getText());
             if(user != null){
                 if(!user.getPassword().equals(passwordAuthInput.getText())){
-                    error.setText("Неверный пароль");
+                    errorAuth.setText("Неверный пароль");
                 }else{
                     FXMLLoader fxmlLoader = new FXMLLoader(CourseApplication.class.getResource("/fxmlScenes/user.fxml"));
                     fxmlLoader.setControllerFactory(springContext::getBean);
@@ -73,14 +77,14 @@ public class AuthorizationController extends CourseApplication {
                     Scene scene = new Scene(fxmlLoader.load());
                     stage.setScene(scene);
                     stage.show();
-                    error.getScene().getWindow().hide();
+                    errorAuth.getScene().getWindow().hide();
                 }
             }
             Admin admin = new Admin();
             admin = adminRepo.findByUsername(loginAuthInput.getText());
             if(admin!=null){
                 if(!admin.getPassword().equals(passwordAuthInput.getText())){
-                    error.setText("Неверный пароль");
+                    errorAuth.setText("Неверный пароль");
                 }else{
                     FXMLLoader fxmlLoader = new FXMLLoader(CourseApplication.class.getResource("/fxmlScenes/admin.fxml"));
                     fxmlLoader.setControllerFactory(springContext::getBean);
@@ -88,10 +92,9 @@ public class AuthorizationController extends CourseApplication {
                     Scene scene = new Scene(fxmlLoader.load());
                     stage.setScene(scene);
                     stage.show();
-                    error.getScene().getWindow().hide();
+                    errorAuth.getScene().getWindow().hide();
                 }
             }
-
         }
     }
 
@@ -113,11 +116,19 @@ public class AuthorizationController extends CourseApplication {
 
     @FXML
     void registration(ActionEvent event) {
-        User user = new User();
-        user.setMail(mailRegInput.getText());
-        user.setUsername(loginRegInput.getText());
-        user.setPassword(passwordRegInput.getText());
-        userRepo.save(user);
+        if ((loginRegInput.getText() == null)||(passwordRegInput.getText() == null)||(mailRegInput.getText() == null))
+        {
+            errorReg.setText("Заполните все поля");
+        } else {
+            if (!userRepo.existsByUsername(loginRegInput.getText()) && !adminRepo.existsByUsername(loginRegInput.getText()))
+            {
+                User user = new User();
+                user.setMail(mailRegInput.getText());
+                user.setUsername(loginRegInput.getText());
+                user.setPassword(passwordRegInput.getText());
+                userRepo.save(user);
+                errorReg.setText("Успешная регистрация");
+            } else {errorReg.setText("Username уже существует");}
+        }
     }
 }
-
