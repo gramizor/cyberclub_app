@@ -17,17 +17,30 @@
             <Image url="@../HUNTERS1_.gif" />
          </image>
       </ImageView>
-      <AnchorPane fx:id="registrationPane" layoutX="439.0" layoutY="497.0" prefHeight="146.0" prefWidth="202.0" style="-fx-background-color: white; -fx-background-radius: 20;" visible="false">
+      <AnchorPane fx:id="registrationPane" layoutX="439.0" layoutY="497.0" prefHeight="160.0" prefWidth="202.0" style="-fx-background-color: white; -fx-background-radius: 20;">
          <children>
             <Text fill="RED" layoutX="36.0" layoutY="26.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Регистрация" textAlignment="CENTER" wrappingWidth="136.33334350585938">
                <font>
                   <Font size="18.0" />
                </font>
             </Text>
-            <TextField fx:id="loginRegInput" alignment="TOP_CENTER" layoutX="35.0" layoutY="34.0" prefHeight="25.0" prefWidth="139.0" promptText="логин" />
-            <PasswordField fx:id="passwordRegInput" alignment="TOP_CENTER" layoutX="35.0" layoutY="86.0" prefHeight="25.0" prefWidth="139.0" promptText="пароль" />
-            <TextField fx:id="mailRegInput" alignment="TOP_CENTER" layoutX="35.0" layoutY="60.0" prefHeight="25.0" prefWidth="139.0" promptText="почта" />
-            <Button layoutX="38.0" layoutY="113.0" mnemonicParsing="false" onAction="#registration" prefHeight="25.0" prefWidth="136.0" text="Зарегистрироваться" />
+            <TextField fx:id="loginRegInput" alignment="TOP_CENTER" layoutX="35.0" layoutY="34.0" prefHeight="25.0" prefWidth="139.0" promptText="логин">
+               <cursor>
+                  <Cursor fx:constant="TEXT" />
+               </cursor></TextField>
+            <TextField fx:id="mailRegInput" alignment="TOP_CENTER" layoutX="35.0" layoutY="60.0" prefHeight="25.0" prefWidth="139.0" promptText="почта">
+               <cursor>
+                  <Cursor fx:constant="TEXT" />
+               </cursor></TextField>
+            <PasswordField fx:id="passwordRegInput" alignment="TOP_CENTER" layoutX="35.0" layoutY="86.0" prefHeight="25.0" prefWidth="139.0" promptText="пароль">
+               <cursor>
+                  <Cursor fx:constant="TEXT" />
+               </cursor></PasswordField>
+            <Button layoutX="35.0" layoutY="113.0" mnemonicParsing="false" onAction="#registration" prefHeight="25.0" prefWidth="139.0" text="Зарегистрироваться">
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor></Button>
+            <Text fx:id="errorReg" fill="RED" layoutX="15.0" layoutY="153.0" strokeType="OUTSIDE" strokeWidth="0.0" textAlignment="CENTER" wrappingWidth="174.0" />
          </children>
       </AnchorPane>
       <AnchorPane fx:id="authorizationPane" layoutX="440.0" layoutY="499.0" prefHeight="146.0" prefWidth="202.0" style="-fx-background-color: white; -fx-background-radius: 20;">
@@ -37,10 +50,22 @@
                   <Font size="18.0" />
                </font>
             </Text>
-            <TextField fx:id="loginAuthInput" alignment="TOP_CENTER" layoutX="34.0" layoutY="33.0" prefHeight="25.0" prefWidth="139.0" promptText="логин" />
-            <PasswordField fx:id="passwordAuthInput" alignment="TOP_CENTER" layoutX="34.0" layoutY="60.0" prefHeight="25.0" prefWidth="139.0" promptText="пароль" />
-            <Button layoutX="70.0" layoutY="90.0" mnemonicParsing="false" onAction="#authorization" prefHeight="25.0" prefWidth="66.0" text="войти" />
-            <Text fx:id="error" fill="RED" layoutX="90.0" layoutY="137.0" strokeType="OUTSIDE" strokeWidth="0.0" />
+            <TextField fx:id="loginAuthInput" alignment="TOP_CENTER" layoutX="34.0" layoutY="33.0" prefHeight="25.0" prefWidth="139.0" promptText="логин">
+               <cursor>
+                  <Cursor fx:constant="TEXT" />
+               </cursor>
+            </TextField>
+            <PasswordField fx:id="passwordAuthInput" alignment="TOP_CENTER" layoutX="34.0" layoutY="60.0" prefHeight="25.0" prefWidth="139.0" promptText="пароль">
+               <cursor>
+                  <Cursor fx:constant="TEXT" />
+               </cursor>
+            </PasswordField>
+            <Button layoutX="70.0" layoutY="90.0" mnemonicParsing="false" onAction="#authorization" prefHeight="25.0" prefWidth="66.0" text="Войти">
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </Button>
+            <Text fx:id="errorAuth" fill="RED" layoutX="31.0" layoutY="134.0" strokeType="OUTSIDE" strokeWidth="0.0" textAlignment="CENTER" wrappingWidth="142.33334350585938" />
          </children>
       </AnchorPane>
       <Button fx:id="regButton" layoutX="491.0" layoutY="663.0" mnemonicParsing="false" onAction="#goToRegistration" prefHeight="25.0" prefWidth="99.0" text="Регистрация">
