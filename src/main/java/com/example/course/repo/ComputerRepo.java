@@ -12,4 +12,9 @@ public interface ComputerRepo extends CrudRepository<Computer, Integer> {
 
     @Query("SELECT c.number FROM Computer c")
     List<Integer> getAllComputerNumbers();
+<<<<<<< HEAD
+=======
+    @Query("SELECT DISTINCT c.status FROM Computer c")
+    List<String> getAllStatus();
+>>>>>>> f4fd03f (bruh3)
 }

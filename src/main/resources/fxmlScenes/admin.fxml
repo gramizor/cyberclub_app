@@ -14,20 +14,20 @@
    <children>
       <AnchorPane fx:id="editBalancePane" layoutX="354.0" layoutY="187.0" prefHeight="561.0" prefWidth="635.0" style="-fx-background-color: adadad; -fx-background-radius: 10;" visible="false">
          <children>
-            <ComboBox fx:id="usernameList" layoutX="308.0" layoutY="17.0" onAction="#usernameListChoose" prefWidth="150.0" promptText="username">
+            <ComboBox fx:id="usernameList" layoutX="328.0" layoutY="17.0" onAction="#usernameListChoose" prefWidth="150.0" promptText="username">
                <cursor>
                   <Cursor fx:constant="HAND" />
                </cursor></ComboBox>
             <VBox fx:id="historyAmount" layoutX="14.0" layoutY="110.0" prefHeight="430.0" prefWidth="604.0" style="-fx-background-color: white;" />
-            <TextField fx:id="amountInput" layoutX="402.0" layoutY="53.0" prefHeight="25.0" prefWidth="103.0" promptText="введите сумму">
+            <TextField fx:id="amountInput" layoutX="402.0" layoutY="51.0" onAction="#amountInputAction" prefHeight="25.0" prefWidth="103.0" promptText="введите сумму">
                <cursor>
                   <Cursor fx:constant="TEXT" />
                </cursor></TextField>
-            <Button fx:id="addBalanceButton" layoutX="515.0" layoutY="53.0" mnemonicParsing="false" onAction="#addBalance" prefHeight="25.0" prefWidth="103.0" text="Пополнить">
+            <Button fx:id="addBalanceButton" layoutX="515.0" layoutY="51.0" mnemonicParsing="false" onAction="#addBalance" prefHeight="25.0" prefWidth="103.0" text="Пополнить">
                <cursor>
                   <Cursor fx:constant="HAND" />
                </cursor></Button>
-            <Text layoutX="14.0" layoutY="39.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Введите имя пользователя:" wrappingWidth="293.578125">
+            <Text layoutX="14.0" layoutY="38.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Выберите имя пользователя:" wrappingWidth="308.578125">
                <font>
                   <Font size="23.0" />
                </font></Text>
@@ -35,7 +35,7 @@
                <font>
                   <Font size="23.0" />
                </font></Text>
-            <Text layoutX="14.0" layoutY="73.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Пополнить баланс пользователя на" wrappingWidth="385.0">
+            <Text layoutX="14.0" layoutY="71.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Пополнить баланс пользователя на" wrappingWidth="385.0">
                <font>
                   <Font size="23.0" />
                </font></Text>
@@ -49,7 +49,7 @@
                </font>
             </Text>
             <VBox fx:id="statusTable" layoutX="35.0" layoutY="89.0" prefHeight="453.0" prefWidth="563.0" style="-fx-background-color: white;" />
-            <ComboBox layoutX="385.0" layoutY="36.0" prefWidth="150.0" promptText="статус">
+            <ComboBox fx:id="statusCheck" layoutX="385.0" layoutY="36.0" onAction="#statusSeclected" prefWidth="150.0" promptText="статус">
                <cursor>
                   <Cursor fx:constant="HAND" />
                </cursor>
