@@ -9,6 +9,7 @@ import java.util.List;
 public interface ComputerRepo extends CrudRepository<Computer, Integer> {
     boolean existsByNumber(Integer number);
     List<Computer> findByNumber(Integer number);
+    Computer findByNumber(int number);
 
     @Query("SELECT c.number FROM Computer c")
     List<Integer> getAllComputerNumbers();

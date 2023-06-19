@@ -71,7 +71,6 @@ public class AdminController extends CourseApplication {
 
     @Autowired
     private ComputerRepo computerRepo;
-
     @Autowired
     private UserRepo userRepo;
     @Autowired

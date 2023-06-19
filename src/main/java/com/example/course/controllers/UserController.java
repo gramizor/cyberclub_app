@@ -1,13 +1,8 @@
 package com.example.course.controllers;
 
 import com.example.course.CourseApplication;
-import com.example.course.entities.Computer;
-import com.example.course.entities.Game;
-import com.example.course.entities.User;
-import com.example.course.repo.AdminRepo;
-import com.example.course.repo.ComputerRepo;
-import com.example.course.repo.GameRepo;
-import com.example.course.repo.UserRepo;
+import com.example.course.entities.*;
+import com.example.course.repo.*;
 import com.example.course.service.Storage;
 import javafx.collections.FXCollections;
 import javafx.event.ActionEvent;
@@ -15,14 +10,12 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
-import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.ComboBox;
+import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.stereotype.Component;
@@ -30,6 +23,9 @@ import org.springframework.stereotype.Component;
 import java.awt.*;
 import java.io.File;
 import java.io.IOException;
+import java.sql.Time;
+import java.time.LocalDate;
+import java.time.LocalTime;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -41,6 +37,15 @@ public class UserController extends CourseApplication {
     private VBox GamesTable;
 
     @FXML
+    private ComboBox<Integer> amountComputerPerHourList;
+
+    @FXML
+    private Text amountItog;
+
+    @FXML
+    private Button amountItogButton;
+
+    @FXML
     private Text amountUser;
 
     @FXML
@@ -48,6 +53,18 @@ public class UserController extends CourseApplication {
 
     @FXML
     private Text balanceShow;
+
+    @FXML
+    private Text balanceUpdateText;
+
+    @FXML
+    private Button buySessionList;
+
+    @FXML
+    private VBox computerAmountTable;
+
+    @FXML
+    private Text dateEndSession;
 
     @FXML
     private Text error;
@@ -62,6 +79,9 @@ public class UserController extends CourseApplication {
     private Button goToGamesButton;
 
     @FXML
+    private TextField hoursInputButton;
+
+    @FXML
     private VBox historyTable;
 
     @FXML
@@ -71,7 +91,16 @@ public class UserController extends CourseApplication {
     private ComboBox<Integer> numberComputerList;
 
     @FXML
+    private ComboBox<Integer> numberComputerList2;
+
+    @FXML
     private Button openGameButton;
+
+    @FXML
+    private AnchorPane userPane;
+
+    @FXML
+    private Text usernameShow;
 
     @FXML
     private Button viewBalanceButton;
@@ -84,6 +113,72 @@ public class UserController extends CourseApplication {
     private Storage storage;
     @Autowired
     private GameRepo gameRepo;
+    @Autowired
+    private PaymentRepo paymentRepo;
+    @Autowired
+    private VisitRepo visitRepo;
+
+    @FXML
+    void amountComputerPerHour(ActionEvent event) {
+
+    }
+
+    @FXML
+    void buySession(ActionEvent event) {
+        int hours = Integer.parseInt(hoursInputButton.getText());
+        int computerNumber = numberComputerList2.getValue();
+        String username = storage.getUsername();
+        User user = userRepo.findByUsername(username);
+        boolean sessionExists = visitRepo.existsByUserAndComputer(user, computerRepo.findByNumber(computerNumber));
+        Computer computer = computerRepo.findByNumber(computerNumber);
+        if (sessionExists) {
+            balanceUpdateText.setText("Сессия уже куплена, повторите позже.");
+        } else {
+            if (computer != null) {
+                double hourlyRate = computer.getCost();
+                double sessionCost = hours * hourlyRate;
+                amountItog.setText(String.format("%.2f руб", sessionCost));
+                double balance = user.getBalance();
+                if (balance >= sessionCost) {
+                    double newBalance = balance - sessionCost;
+                    user.setBalance(newBalance);
+                    userRepo.save(user);
+                    Visit visit = new Visit();
+                    visit.setDate(LocalDate.now());
+                    visit.setStartTime(Time.valueOf(LocalTime.now()));
+                    LocalTime endTime = LocalTime.now().plusHours(hours);
+                    visit.setEndTime(Time.valueOf(endTime));
+                    visit.setUser(user);
+                    visit.setComputer(computerRepo.findByNumber(computerNumber));
+                    visitRepo.save(visit);
+                    dateEndSession.setText("Сессия кончится в " + endTime.toString());
+                    PaymentHistory payment = new PaymentHistory();
+                    payment.setDate(LocalDate.now());
+                    payment.setTime(Time.valueOf(LocalTime.now()));
+                    payment.setAmount(sessionCost);
+                    payment.setUser(user);
+                    paymentRepo.save(payment);
+                    balanceShow.setText(String.valueOf(newBalance).concat(" руб"));
+                    balanceUpdateText.setText("Успешная оплата. Стоимость: " + sessionCost + " руб.");
+                } else {
+                    balanceUpdateText.setText("Недостаточно средств.");
+                }
+            }
+        }
+    }
+
+    @FXML
+    void amountItogAction(ActionEvent event) {
+        int hours = Integer.parseInt(hoursInputButton.getText());
+        int computerNumber = numberComputerList2.getValue();
+        double sessionCost = hours * computerRepo.findByNumber(computerNumber).getCost();
+        amountItog.setText(String.format("%.2f руб", sessionCost));
+    }
+
+    @FXML
+    void hoursInput(ActionEvent event) {
+
+    }
 
     @FXML
     void gameSelected(ActionEvent event) {
@@ -94,14 +189,25 @@ public class UserController extends CourseApplication {
     void goToGames(ActionEvent event) {
         gamesPane.setVisible(true);
         balancePane.setVisible(false);
-
+        userPane.setVisible(true);
+        usernameShow.setText(storage.getUsername());
+        String username = storage.getUsername();
+        User user = userRepo.findByUsername(username);
+        List<Visit> activeSessions = visitRepo.findByUserAndEndTimeIsNull(user);
+        if (!activeSessions.isEmpty()) {
+            Visit activeSession = activeSessions.get(0);
+            Time endTime = activeSession.getEndTime();
+            dateEndSession.setText(endTime != null ? ("Сессия кончится в " + endTime.toString()) : "Сессия ещё не куплена.");
+        } else {
+            dateEndSession.setText("Сессия ещё не куплена.");
+        }
         List<Game> games = gameRepo.findAll();
-
         List<String> gameNames = games.stream()
                 .map(Game::getName)
                 .collect(Collectors.toList());
-
         gameList.setItems(FXCollections.observableArrayList(gameNames));
+        List<Integer> computerNumbers = computerRepo.getAllComputerNumbers();
+        numberComputerList2.setItems(FXCollections.observableArrayList(computerNumbers));
     }
 
     @FXML
@@ -131,10 +237,22 @@ public class UserController extends CourseApplication {
     void viewBalance(ActionEvent event) {
         gamesPane.setVisible(false);
         balancePane.setVisible(true);
-        User user = userRepo.findByUsername(storage.getUsername());
+        userPane.setVisible(true);
+        usernameShow.setText(storage.getUsername());
+        String username = storage.getUsername();
+        User user = userRepo.findByUsername(username);
+        List<Visit> activeSessions = visitRepo.findByUserAndEndTimeIsNull(user);
+        if (!activeSessions.isEmpty()) {
+            Visit activeSession = activeSessions.get(0);
+            Time endTime = activeSession.getEndTime();
+            dateEndSession.setText(endTime != null ? ("Сессия кончится в " + endTime.toString()) : "Сессия ещё не куплена.");
+        } else {
+            dateEndSession.setText("Сессия ещё не куплена.");
+        }
         balanceShow.setText(String.valueOf(user.getBalance()).concat(" руб"));
         List<Integer> computerNumbers = computerRepo.getAllComputerNumbers();
         numberComputerList.setItems(FXCollections.observableArrayList(computerNumbers));
+        numberComputerList2.setItems(FXCollections.observableArrayList(computerNumbers));
     }
 
     @FXML
