@@ -22,7 +22,7 @@ public class User {
     private String mail;
     private String username;
     private String password;
-    private String balance;
+    private double balance;
 
     @OneToMany(fetch = FetchType.EAGER,
             cascade = CascadeType.ALL,
