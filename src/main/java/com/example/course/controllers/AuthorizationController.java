@@ -116,7 +116,7 @@ public class AuthorizationController extends CourseApplication {
 
     @FXML
     void registration(ActionEvent event) {
-        if ((loginRegInput.getText() == null)||(passwordRegInput.getText() == null)||(mailRegInput.getText() == null))
+        if ((loginRegInput.getText().equals(""))||(passwordRegInput.getText().equals(""))||(mailRegInput.getText().equals("")))
         {
             errorReg.setText("Заполните все поля");
         } else {
