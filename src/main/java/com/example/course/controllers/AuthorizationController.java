@@ -4,6 +4,7 @@ import com.example.course.entities.Admin;
 import com.example.course.entities.User;
 import com.example.course.repo.AdminRepo;
 import com.example.course.repo.UserRepo;
+import com.example.course.service.Storage;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -78,6 +79,7 @@ public class AuthorizationController extends CourseApplication {
                     stage.setScene(scene);
                     stage.show();
                     errorAuth.getScene().getWindow().hide();
+                    storage.setUsername(user.getUsername());
                 }
             }
             Admin admin = new Admin();
@@ -93,6 +95,7 @@ public class AuthorizationController extends CourseApplication {
                     stage.setScene(scene);
                     stage.show();
                     errorAuth.getScene().getWindow().hide();
+                    storage.setUsername(user.getUsername());
                 }
             }
         }
@@ -113,6 +116,8 @@ public class AuthorizationController extends CourseApplication {
         authButton.setVisible(true);
         authorizationPane.setVisible(false);
     }
+    @Autowired
+    private Storage storage;
 
     @FXML
     void registration(ActionEvent event) {
@@ -124,6 +129,7 @@ public class AuthorizationController extends CourseApplication {
             {
                 User user = new User();
                 user.setMail(mailRegInput.getText());
+                user.setBalance(0);
                 user.setUsername(loginRegInput.getText());
                 user.setPassword(passwordRegInput.getText());
                 userRepo.save(user);

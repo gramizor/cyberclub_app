@@ -1,6 +1,9 @@
 package com.example.course.controllers;
 
 import com.example.course.CourseApplication;
+import com.example.course.entities.User;
+import com.example.course.repo.UserRepo;
+import com.example.course.service.Storage;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -12,6 +15,7 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.stereotype.Component;
 
@@ -53,9 +57,14 @@ public class UserController extends CourseApplication {
 
     @FXML
     private Button openGameButton;
+    @Autowired
+    private Storage storage;
 
     @FXML
     private Button viewBalanceButton;
+
+    @Autowired
+    private UserRepo userRepo;
 
     @FXML
     void goToGames(ActionEvent event) {
@@ -83,5 +92,7 @@ public class UserController extends CourseApplication {
     void viewBalance(ActionEvent event) {
         gamesPane.setVisible(false);
         balancePane.setVisible(true);
+        User user = userRepo.findByUsername(storage.getUsername());
+        balanceShow.setText(String.valueOf(user.getBalance()).concat(" руб"));
     }
 }
