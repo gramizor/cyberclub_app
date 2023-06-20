@@ -10,7 +10,7 @@ import java.util.List;
 
 public interface VisitRepo extends CrudRepository<Visit, Integer> {
     Visit save(Visit visit);
-    boolean existsByUserAndComputer(User user, Computer computer);
+    boolean existsByUser(User user);
     //Visit  findByEndTime(String endTime);
     List<Visit> findByUserAndEndTimeIsNotNull(User user);
 }

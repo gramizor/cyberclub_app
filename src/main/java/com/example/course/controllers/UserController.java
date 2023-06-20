@@ -131,7 +131,7 @@ public class UserController extends CourseApplication {
         int computerNumber = numberComputerList2.getValue();
         String username = storage.getUsername();
         User user = userRepo.findByUsername(username);
-        boolean sessionExists = visitRepo.existsByUserAndComputer(user, computerRepo.findByNumber(computerNumber));
+        boolean sessionExists = visitRepo.existsByUser(user);
         Computer computer = computerRepo.findByNumber(computerNumber);
         if (sessionExists) {
             balanceUpdateText.setText("Сессия уже куплена, повторите позже.");

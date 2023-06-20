@@ -95,7 +95,7 @@ public class AuthorizationController extends CourseApplication {
                     stage.setScene(scene);
                     stage.show();
                     errorAuth.getScene().getWindow().hide();
-                    storage.setUsername(user.getUsername());
+                    storage.setUsername(admin.getUsername());
                 }
             }
         }
