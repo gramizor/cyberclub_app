@@ -37,6 +37,9 @@ public class AdminController extends CourseApplication {
     private Button addBalanceButton;
 
     @FXML
+    private Text balanceUpdateADmin;
+
+    @FXML
     private TextField amountInput;
 
     @FXML
@@ -93,8 +96,9 @@ public class AdminController extends CourseApplication {
                 payment.setAmount(amount);
                 payment.setUser(user);
                 paymentRepo.save(payment);
+                balanceUpdateADmin.setText("Баланс пополнен на " + amountText);
             }
-        }
+        }else {balanceUpdateADmin.setText("Выберите пользователя");}
     }
 
     @FXML

@@ -39,7 +39,7 @@ public class UserController extends CourseApplication {
     private VBox GamesTable;
 
     @FXML
-    private ComboBox<Integer> amountComputerPerHourList;
+    private ComboBox<String> amountComputerPerHourList;
 
     @FXML
     private Text amountItog;
@@ -204,6 +204,8 @@ public class UserController extends CourseApplication {
         usernameShow.setText(storage.getUsername());
         String username = storage.getUsername();
         User user = userRepo.findByUsername(username);
+        List<String> computerAmountList = computerRepo.getAllCost();
+        amountComputerPerHourList.setItems(FXCollections.observableArrayList(computerAmountList));
         List<Game> games = gameRepo.findAll();
         List<String> gameNames = games.stream()
                 .map(Game::getName)
@@ -246,6 +248,8 @@ public class UserController extends CourseApplication {
         List<Integer> computerNumbers = computerRepo.getAllComputerNumbers();
         numberComputerList.setItems(FXCollections.observableArrayList(computerNumbers));
         numberComputerList2.setItems(FXCollections.observableArrayList(computerNumbers));
+        List<String> computerAmountList = computerRepo.getAllCost();
+        amountComputerPerHourList.setItems(FXCollections.observableArrayList(computerAmountList));
         List<Visit> activeSessions = visitRepo.findByUserAndEndTimeIsNotNull(user);
         if (!activeSessions.isEmpty()) {
             Visit activeSession = activeSessions.get(0);
