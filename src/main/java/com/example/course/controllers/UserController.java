@@ -16,6 +16,7 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
+import lombok.SneakyThrows;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.stereotype.Component;
@@ -26,6 +27,7 @@ import java.io.IOException;
 import java.sql.Time;
 import java.time.LocalDate;
 import java.time.LocalTime;
+import java.time.format.DateTimeFormatter;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -151,7 +153,7 @@ public class UserController extends CourseApplication {
                     visit.setUser(user);
                     visit.setComputer(computerRepo.findByNumber(computerNumber));
                     visitRepo.save(visit);
-                    dateEndSession.setText("Сессия кончится в " + endTime.toString());
+
                     PaymentHistory payment = new PaymentHistory();
                     payment.setDate(LocalDate.now());
                     payment.setTime(Time.valueOf(LocalTime.now()));
@@ -159,11 +161,20 @@ public class UserController extends CourseApplication {
                     payment.setUser(user);
                     paymentRepo.save(payment);
                     balanceShow.setText(String.valueOf(newBalance).concat(" руб"));
-                    balanceUpdateText.setText("Успешная оплата. Стоимость: " + sessionCost + " руб.");
+                    balanceUpdateText.setText("Успешная оплата.");
                 } else {
                     balanceUpdateText.setText("Недостаточно средств.");
                 }
             }
+        }
+        List<Visit> activeSessions = visitRepo.findByUserAndEndTimeIsNotNull(user);
+        if (!activeSessions.isEmpty()) {
+            Visit activeSession = activeSessions.get(0);
+            Time endTime = activeSession.getEndTime();
+            String endTimeString = endTime != null ? endTime.toString() : "Error with session";
+            dateEndSession.setText("Сессия кончится в " + endTimeString);
+        } else {
+            dateEndSession.setText("Сессия ещё не куплена.");
         }
     }
 
@@ -193,14 +204,6 @@ public class UserController extends CourseApplication {
         usernameShow.setText(storage.getUsername());
         String username = storage.getUsername();
         User user = userRepo.findByUsername(username);
-        List<Visit> activeSessions = visitRepo.findByUserAndEndTimeIsNull(user);
-        if (!activeSessions.isEmpty()) {
-            Visit activeSession = activeSessions.get(0);
-            Time endTime = activeSession.getEndTime();
-            dateEndSession.setText(endTime != null ? ("Сессия кончится в " + endTime.toString()) : "Сессия ещё не куплена.");
-        } else {
-            dateEndSession.setText("Сессия ещё не куплена.");
-        }
         List<Game> games = gameRepo.findAll();
         List<String> gameNames = games.stream()
                 .map(Game::getName)
@@ -208,28 +211,26 @@ public class UserController extends CourseApplication {
         gameList.setItems(FXCollections.observableArrayList(gameNames));
         List<Integer> computerNumbers = computerRepo.getAllComputerNumbers();
         numberComputerList2.setItems(FXCollections.observableArrayList(computerNumbers));
+        List<Visit> activeSessions = visitRepo.findByUserAndEndTimeIsNotNull(user);
+        if (!activeSessions.isEmpty()) {
+            Visit activeSession = activeSessions.get(0);
+            Time endTime = activeSession.getEndTime();
+            String endTimeString = endTime != null ? endTime.toString() : "Error with session";
+            dateEndSession.setText("Сессия кончится в " + endTimeString);
+        } else {
+            dateEndSession.setText("Сессия ещё не куплена.");
+        }
     }
 
+    @SneakyThrows
     @FXML
     void openGame(ActionEvent event) {
         String selectedGame = gameList.getSelectionModel().getSelectedItem();
         if (selectedGame != null) {
-            List<Game> games = gameRepo.findByName(selectedGame);
-            if (!games.isEmpty()) {
-                String gamePath = games.get(0).getPath();
-                File file = new File(gamePath);
-
-                if (Desktop.isDesktopSupported() && Desktop.getDesktop().isSupported(Desktop.Action.OPEN)) {
-                    Desktop desktop = Desktop.getDesktop();
-                    try {
-                        desktop.open(file);
-                    } catch (IOException e) {
-                        e.printStackTrace();
-                    }
-                } else {
-                    System.out.println("Открытие файла не поддерживается на данной платформе.");
-                }
-            }
+            Game games = gameRepo.findByName(selectedGame);
+            ProcessBuilder p = new ProcessBuilder();
+            p.command(games.getPath());
+            p.start();
         }
     }
 
@@ -241,20 +242,20 @@ public class UserController extends CourseApplication {
         usernameShow.setText(storage.getUsername());
         String username = storage.getUsername();
         User user = userRepo.findByUsername(username);
-        List<Visit> activeSessions = visitRepo.findByUserAndEndTimeIsNull(user);
-        if (!activeSessions.isEmpty()) {
-            Visit activeSession = activeSessions.get(0);
-            Time endTime = activeSession.getEndTime();
-            dateEndSession.setText(endTime != null ? ("Сессия кончится в " + endTime.toString()) : "Сессия ещё не куплена.");
-        } else {
-            dateEndSession.setText("Сессия ещё не куплена.");
-        }
         balanceShow.setText(String.valueOf(user.getBalance()).concat(" руб"));
         List<Integer> computerNumbers = computerRepo.getAllComputerNumbers();
         numberComputerList.setItems(FXCollections.observableArrayList(computerNumbers));
         numberComputerList2.setItems(FXCollections.observableArrayList(computerNumbers));
+        List<Visit> activeSessions = visitRepo.findByUserAndEndTimeIsNotNull(user);
+        if (!activeSessions.isEmpty()) {
+            Visit activeSession = activeSessions.get(0);
+            Time endTime = activeSession.getEndTime();
+            String endTimeString = endTime != null ? endTime.toString() : "Error with session";
+            dateEndSession.setText("Сессия кончится в " + endTimeString);
+        } else {
+            dateEndSession.setText("Сессия ещё не куплена.");
+        }
     }
-
     @FXML
     void numberComputer(ActionEvent event) {
         User user = userRepo.findByUsername(storage.getUsername());

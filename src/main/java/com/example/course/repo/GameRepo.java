@@ -8,5 +8,5 @@ import java.util.List;
 
 public interface GameRepo extends CrudRepository<Game, Integer> {
     List<Game> findAll();
-    List<Game> findByName(String nameGame);
+    Game findByName(String nameGame);
 }
