@@ -2,6 +2,7 @@
 
 <?import javafx.scene.Cursor?>
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.PasswordField?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.image.Image?>
@@ -17,62 +18,67 @@
             <Image url="@../HUNTERS1_.gif" />
          </image>
       </ImageView>
-      <AnchorPane fx:id="registrationPane" layoutX="439.0" layoutY="497.0" prefHeight="160.0" prefWidth="202.0" style="-fx-background-color: white; -fx-background-radius: 20;">
+      <AnchorPane fx:id="registrationPane" layoutX="439.0" layoutY="499.0" prefHeight="154.0" prefWidth="202.0" style="-fx-background-color: white; -fx-background-radius: 20;">
          <children>
-            <Text fill="RED" layoutX="36.0" layoutY="26.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Регистрация" textAlignment="CENTER" wrappingWidth="136.33334350585938">
+            <Text fill="RED" layoutX="36.0" layoutY="22.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Регистрация" textAlignment="CENTER" wrappingWidth="136.33334350585938">
                <font>
                   <Font size="18.0" />
                </font>
             </Text>
-            <TextField fx:id="loginRegInput" alignment="TOP_CENTER" layoutX="35.0" layoutY="34.0" prefHeight="25.0" prefWidth="139.0" promptText="логин">
+            <TextField fx:id="loginRegInput" alignment="TOP_CENTER" layoutX="35.0" layoutY="30.0" prefHeight="25.0" prefWidth="139.0" promptText="логин">
                <cursor>
                   <Cursor fx:constant="TEXT" />
                </cursor></TextField>
-            <TextField fx:id="mailRegInput" alignment="TOP_CENTER" layoutX="35.0" layoutY="60.0" prefHeight="25.0" prefWidth="139.0" promptText="почта">
+            <TextField fx:id="mailRegInput" alignment="TOP_CENTER" layoutX="35.0" layoutY="56.0" prefHeight="25.0" prefWidth="139.0" promptText="почта">
                <cursor>
                   <Cursor fx:constant="TEXT" />
                </cursor></TextField>
-            <PasswordField fx:id="passwordRegInput" alignment="TOP_CENTER" layoutX="35.0" layoutY="86.0" prefHeight="25.0" prefWidth="139.0" promptText="пароль">
+            <PasswordField fx:id="passwordRegInput" alignment="TOP_CENTER" layoutX="35.0" layoutY="82.0" prefHeight="25.0" prefWidth="139.0" promptText="пароль">
                <cursor>
                   <Cursor fx:constant="TEXT" />
                </cursor></PasswordField>
-            <Button layoutX="35.0" layoutY="113.0" mnemonicParsing="false" onAction="#registration" prefHeight="25.0" prefWidth="139.0" text="Зарегистрироваться">
+            <Button layoutX="35.0" layoutY="109.0" mnemonicParsing="false" onAction="#registration" prefHeight="25.0" prefWidth="139.0" text="Зарегистрироваться">
                <cursor>
                   <Cursor fx:constant="HAND" />
                </cursor></Button>
-            <Text fx:id="errorReg" fill="RED" layoutX="15.0" layoutY="153.0" strokeType="OUTSIDE" strokeWidth="0.0" textAlignment="CENTER" wrappingWidth="174.0" />
+            <Text fx:id="errorReg" fill="RED" layoutX="16.0" layoutY="149.0" strokeType="OUTSIDE" strokeWidth="0.0" textAlignment="CENTER" wrappingWidth="174.0" />
          </children>
       </AnchorPane>
-      <AnchorPane fx:id="authorizationPane" layoutX="440.0" layoutY="499.0" prefHeight="146.0" prefWidth="202.0" style="-fx-background-color: white; -fx-background-radius: 20;">
+      <AnchorPane fx:id="authorizationPane" layoutX="440.0" layoutY="499.0" prefHeight="157.0" prefWidth="202.0" style="-fx-background-color: white; -fx-background-radius: 20;" visible="false">
          <children>
-            <Text fill="RED" layoutX="35.0" layoutY="24.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Авторизация" textAlignment="CENTER" wrappingWidth="142.33334350585938">
+            <Text fill="RED" layoutX="35.0" layoutY="22.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Авторизация" textAlignment="CENTER" wrappingWidth="142.33334350585938">
                <font>
                   <Font size="18.0" />
                </font>
             </Text>
-            <TextField fx:id="loginAuthInput" alignment="TOP_CENTER" layoutX="34.0" layoutY="33.0" prefHeight="25.0" prefWidth="139.0" promptText="логин">
+            <TextField fx:id="loginAuthInput" alignment="TOP_LEFT" layoutX="34.0" layoutY="31.0" prefHeight="25.0" prefWidth="139.0" promptText="логин">
                <cursor>
                   <Cursor fx:constant="TEXT" />
                </cursor>
             </TextField>
-            <PasswordField fx:id="passwordAuthInput" alignment="TOP_CENTER" layoutX="34.0" layoutY="60.0" prefHeight="25.0" prefWidth="139.0" promptText="пароль">
+            <PasswordField fx:id="passwordAuthInput" alignment="TOP_LEFT" layoutX="34.0" layoutY="58.0" prefHeight="25.0" prefWidth="139.0" promptText="пароль">
                <cursor>
                   <Cursor fx:constant="TEXT" />
                </cursor>
             </PasswordField>
-            <Button layoutX="70.0" layoutY="90.0" mnemonicParsing="false" onAction="#authorization" prefHeight="25.0" prefWidth="66.0" text="Войти">
+            <Button layoutX="70.0" layoutY="128.0" mnemonicParsing="false" onAction="#authorization" prefHeight="25.0" prefWidth="66.0" text="Войти">
                <cursor>
                   <Cursor fx:constant="HAND" />
                </cursor>
             </Button>
-            <Text fx:id="errorAuth" fill="RED" layoutX="31.0" layoutY="134.0" strokeType="OUTSIDE" strokeWidth="0.0" textAlignment="CENTER" wrappingWidth="142.33334350585938" />
+            <Text fx:id="errorAuth" fill="RED" layoutX="35.0" layoutY="124.0" strokeType="OUTSIDE" strokeWidth="0.0" textAlignment="CENTER" wrappingWidth="136.3333435058595" />
+            <ComboBox fx:id="computerNumber" layoutX="34.0" layoutY="85.0" prefHeight="25.0" prefWidth="139.0" promptText="компьютер">
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </ComboBox>
          </children>
       </AnchorPane>
-      <Button fx:id="regButton" layoutX="491.0" layoutY="663.0" mnemonicParsing="false" onAction="#goToRegistration" prefHeight="25.0" prefWidth="99.0" text="Регистрация">
+      <Button fx:id="regButton" layoutX="491.0" layoutY="663.0" mnemonicParsing="false" onAction="#goToRegistration" prefHeight="25.0" prefWidth="99.0" text="Регистрация" visible="false">
          <cursor>
             <Cursor fx:constant="HAND" />
          </cursor></Button>
-      <Button fx:id="authButton" layoutX="491.0" layoutY="663.0" mnemonicParsing="false" onAction="#goToAuthorization" prefHeight="25.0" prefWidth="99.0" text="Авторизация" visible="false">
+      <Button fx:id="authButton" layoutX="491.0" layoutY="663.0" mnemonicParsing="false" onAction="#goToAuthorization" prefHeight="25.0" prefWidth="99.0" text="Авторизация">
          <cursor>
             <Cursor fx:constant="HAND" />
          </cursor></Button>

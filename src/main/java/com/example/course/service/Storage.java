@@ -11,4 +11,5 @@ import org.springframework.stereotype.Component;
 @NoArgsConstructor
 public class Storage {
     private String username;
+    private Integer number;
 }

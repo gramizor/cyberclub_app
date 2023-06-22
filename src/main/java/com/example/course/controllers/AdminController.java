@@ -37,10 +37,13 @@ public class AdminController extends CourseApplication {
     private Button addBalanceButton;
 
     @FXML
+    private TextField amountInput;
+
+    @FXML
     private Text balanceUpdateADmin;
 
     @FXML
-    private TextField amountInput;
+    private Text error;
 
     @FXML
     private Button editBalanceButton;
@@ -49,13 +52,28 @@ public class AdminController extends CourseApplication {
     private AnchorPane editBalancePane;
 
     @FXML
-    private Text error;
+    private AnchorPane editBalancePane1;
+
+    @FXML
+    private Button goToReservation;
 
     @FXML
     private VBox historyAmount;
 
     @FXML
     private Button logOutButton;
+
+    @FXML
+    private ComboBox<Integer> numberComputerList;
+
+    @FXML
+    private Button reservationButton;
+
+    @FXML
+    private Text reservationInfo;
+
+    @FXML
+    private VBox reservationTables;
 
     @FXML
     private ComboBox<String> statusCheck;
@@ -70,7 +88,16 @@ public class AdminController extends CourseApplication {
     private VBox statusTable;
 
     @FXML
+    private ComboBox<?> timeReservationList;
+
+    @FXML
+    private AnchorPane reservationPane;
+
+    @FXML
     private ComboBox<String> usernameList;
+
+    @FXML
+    private ComboBox<String> usernameList2;
 
     @Autowired
     private ComputerRepo computerRepo;
@@ -110,15 +137,34 @@ public class AdminController extends CourseApplication {
     void editBalance(ActionEvent event) {
         statusPane.setVisible(false);
         editBalancePane.setVisible(true);
+        reservationPane.setVisible(false);
         List<String> userNameLister = userRepo.getAllUsername();
         usernameList.setItems(FXCollections.observableArrayList(userNameLister));
     }
 
+    @FXML
+    void goToReservation(ActionEvent event) {
+        statusPane.setVisible(false);
+        editBalancePane.setVisible(false);
+        reservationPane.setVisible(true);
+        List<Integer> compNumber = computerRepo.getAllComputerNumbers();
+        numberComputerList.setItems(FXCollections.observableArrayList(compNumber));
+        List<String> userNameLister = userRepo.getAllUsername();
+        usernameList2.setItems(FXCollections.observableArrayList(userNameLister));
+
+        timeReservationList.setItems(FXCollections.observableArrayList());
+    }
+
+    @FXML
+    void reservation(ActionEvent event) {
+
+    }
 
     @FXML
     void statusComputer(ActionEvent event) {
         statusPane.setVisible(true);
         editBalancePane.setVisible(false);
+        reservationPane.setVisible(false);
         List<String> computerStatusList = computerRepo.getAllStatus();
         statusCheck.setItems(FXCollections.observableArrayList(computerStatusList));
     }
@@ -130,6 +176,12 @@ public class AdminController extends CourseApplication {
 
     @FXML
     void usernameListChoose(ActionEvent event) {
+
+    }
+
+
+    @FXML
+    void usernameListChoose2(ActionEvent event) {
 
     }
 

@@ -11,7 +11,7 @@ public interface ComputerRepo extends CrudRepository<Computer, Integer> {
     List<Computer> findByNumber(Integer number);
     Computer findByNumber(int number);
 
-    @Query("SELECT c.number FROM Computer c")
+    @Query("SELECT c.number FROM Computer c order by c.number asc")
     List<Integer> getAllComputerNumbers();
     @Query("SELECT DISTINCT c.status FROM Computer c")
     List<String> getAllStatus();

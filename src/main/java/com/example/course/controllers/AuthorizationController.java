@@ -1,10 +1,13 @@
 package com.example.course.controllers;
 import com.example.course.CourseApplication;
 import com.example.course.entities.Admin;
+import com.example.course.entities.Computer;
 import com.example.course.entities.User;
 import com.example.course.repo.AdminRepo;
+import com.example.course.repo.ComputerRepo;
 import com.example.course.repo.UserRepo;
 import com.example.course.service.Storage;
+import javafx.collections.FXCollections;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -19,6 +22,9 @@ import lombok.SneakyThrows;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.stereotype.Component;
+import javafx.scene.control.ComboBox;
+
+import java.util.List;
 
 
 @Component
@@ -50,6 +56,10 @@ public class AuthorizationController extends CourseApplication {
     private PasswordField passwordAuthInput;
 
     @FXML
+    private ComboBox<Integer> computerNumber;
+
+
+    @FXML
     private Text errorAuth;
 
     @FXML
@@ -59,44 +69,54 @@ public class AuthorizationController extends CourseApplication {
     private UserRepo userRepo;
     @Autowired
     private AdminRepo adminRepo;
+    @Autowired
+    private ComputerRepo computerRepo;
 
     @SneakyThrows
     @FXML
     void authorization(ActionEvent event) {
         if(!userRepo.existsByUsername(loginAuthInput.getText()) && !adminRepo.existsByUsername(loginAuthInput.getText())){
             errorAuth.setText("Пользователя нет");
-        }else{
-            User user = new User();
-            user = userRepo.findByUsername(loginAuthInput.getText());
-            if(user != null){
-                if(!user.getPassword().equals(passwordAuthInput.getText())){
-                    errorAuth.setText("Неверный пароль");
-                }else{
-                    FXMLLoader fxmlLoader = new FXMLLoader(CourseApplication.class.getResource("/fxmlScenes/user.fxml"));
-                    fxmlLoader.setControllerFactory(springContext::getBean);
-                    Stage stage = new Stage();
-                    Scene scene = new Scene(fxmlLoader.load());
-                    stage.setScene(scene);
-                    stage.show();
-                    errorAuth.getScene().getWindow().hide();
-                    storage.setUsername(user.getUsername());
-                }
-            }
-            Admin admin = new Admin();
-            admin = adminRepo.findByUsername(loginAuthInput.getText());
-            if(admin!=null){
-                if(!admin.getPassword().equals(passwordAuthInput.getText())){
-                    errorAuth.setText("Неверный пароль");
-                }else{
-                    FXMLLoader fxmlLoader = new FXMLLoader(CourseApplication.class.getResource("/fxmlScenes/admin.fxml"));
-                    fxmlLoader.setControllerFactory(springContext::getBean);
-                    Stage stage = new Stage();
-                    Scene scene = new Scene(fxmlLoader.load());
-                    stage.setScene(scene);
-                    stage.show();
-                    errorAuth.getScene().getWindow().hide();
-                    storage.setUsername(admin.getUsername());
-                }
+        }else {
+            int compNumber = 0;
+            try {
+                compNumber = computerNumber.getValue();
+                Computer computer = computerRepo.findByNumber(compNumber);
+                    storage.setNumber(computer.getNumber());
+                    User user = new User();
+                    user = userRepo.findByUsername(loginAuthInput.getText());
+                    if (user != null) {
+                        if (!user.getPassword().equals(passwordAuthInput.getText())) {
+                            errorAuth.setText("Неверный пароль");
+                        } else {
+                            FXMLLoader fxmlLoader = new FXMLLoader(CourseApplication.class.getResource("/fxmlScenes/user.fxml"));
+                            fxmlLoader.setControllerFactory(springContext::getBean);
+                            Stage stage = new Stage();
+                            Scene scene = new Scene(fxmlLoader.load());
+                            stage.setScene(scene);
+                            stage.show();
+                            errorAuth.getScene().getWindow().hide();
+                            storage.setUsername(user.getUsername());
+                        }
+                    }
+                    Admin admin = new Admin();
+                    admin = adminRepo.findByUsername(loginAuthInput.getText());
+                    if (admin != null) {
+                        if (!admin.getPassword().equals(passwordAuthInput.getText())) {
+                            errorAuth.setText("Неверный пароль");
+                        } else {
+                            FXMLLoader fxmlLoader = new FXMLLoader(CourseApplication.class.getResource("/fxmlScenes/admin.fxml"));
+                            fxmlLoader.setControllerFactory(springContext::getBean);
+                            Stage stage = new Stage();
+                            Scene scene = new Scene(fxmlLoader.load());
+                            stage.setScene(scene);
+                            stage.show();
+                            errorAuth.getScene().getWindow().hide();
+                            storage.setUsername(admin.getUsername());
+                        }
+                    }
+            } catch (Exception e) {
+                errorAuth.setText("Выберите компьютер");
             }
         }
     }
@@ -107,6 +127,8 @@ public class AuthorizationController extends CourseApplication {
         registrationPane.setVisible(false);
         authButton.setVisible(false);
         authorizationPane.setVisible(true);
+        List<Integer> computerNumbers = computerRepo.getAllComputerNumbers();
+        computerNumber.setItems(FXCollections.observableArrayList(computerNumbers));
     }
 
     @FXML

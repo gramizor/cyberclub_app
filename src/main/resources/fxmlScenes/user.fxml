@@ -3,100 +3,73 @@
 <?import javafx.scene.Cursor?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.ComboBox?>
-<?import javafx.scene.control.TextField?>
+<?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.shape.Line?>
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane prefHeight="241.0" prefWidth="465.0" style="-fx-background-color: black;" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.course.controllers.UserController">
+<AnchorPane prefHeight="241.0" prefWidth="465.0" style="-fx-background-color: black;" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.course.controllers.UserControllerOld">
    <children>
-      <AnchorPane maxHeight="800" maxWidth="1080" minHeight="800" minWidth="1080" prefHeight="257.0" prefWidth="681.0" style="-fx-background-color: black;">
+      <AnchorPane layoutX="628.0" layoutY="158.0" prefHeight="620.0" prefWidth="438.0" style="-fx-background-color: adadad; -fx-background-radius: 10;">
          <children>
-            <AnchorPane fx:id="balancePane" layoutX="259.0" layoutY="158.0" prefHeight="620.0" prefWidth="438.0" style="-fx-background-color: adadad; -fx-background-radius: 10;" visible="false">
-               <children>
-                  <Text layoutX="15.0" layoutY="96.0" strokeType="OUTSIDE" strokeWidth="0.0" text="История платежей">
-                     <font>
-                        <Font size="23.0" />
-                     </font>
-                  </Text>
-                  <Text layoutX="19.0" layoutY="29.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Текущий баланс:">
-                     <font>
-                        <Font size="23.0" />
-                     </font>
-                  </Text>
-                  <Text layoutX="17.0" layoutY="64.0" strokeType="OUTSIDE" strokeWidth="0.0" text="На                     хватит на  " wrappingWidth="273.978515625">
-                     <font>
-                        <Font size="23.0" />
-                     </font>
-                  </Text>
-                  <Text fx:id="balanceShow" layoutX="198.0" layoutY="31.0" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="196.623046875">
-                     <font>
-                        <Font size="23.0" />
-                     </font>
-                  </Text>
-                  <Text fx:id="amountUser" layoutX="280.0" layoutY="65.0" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="156.35205078125">
-                     <font>
-                        <Font size="23.0" />
-                     </font>
-                  </Text>
-                  <ComboBox fx:id="numberComputerList" layoutX="46.0" layoutY="45.0" onAction="#numberComputer" prefHeight="25.0" prefWidth="128.0" promptText="компьютере" />
-                  <VBox fx:id="historyTable" layoutX="14.0" layoutY="103.0" prefHeight="496.0" prefWidth="392.0" style="-fx-background-color: white;" />
-               </children>
-            </AnchorPane>
-            <AnchorPane fx:id="gamesPane" layoutX="259.0" layoutY="158.0" prefHeight="620.0" prefWidth="438.0" style="-fx-background-color: adadad; -fx-background-radius: 10;" visible="false">
-               <children>
-                  <Text layoutX="22.0" layoutY="50.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Выберите игру" wrappingWidth="176.35205078125">
-                     <font>
-                        <Font size="24.0" />
-                     </font>
-                  </Text>
-                  <VBox fx:id="GamesTable" layoutX="11.0" layoutY="106.0" prefHeight="496.0" prefWidth="392.0" style="-fx-background-color: white;" />
-                  <Button fx:id="openGameButton" layoutX="198.0" layoutY="72.0" mnemonicParsing="false" onAction="#openGame" text="Играть!">
-                     <cursor>
-                        <Cursor fx:constant="HAND" />
-                     </cursor></Button>
-                  <ComboBox fx:id="gameList" layoutX="22.0" layoutY="72.0" onAction="#gameSelected" prefWidth="150.0" promptText="игра" />
-               </children>
-            </AnchorPane>
-            <AnchorPane prefHeight="135.0" prefWidth="1080.0" style="-fx-background-color: #666;">
-               <children>
-                  <Text layoutX="242.0" layoutY="83.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Панель пользователя">
-                     <font>
-                        <Font size="38.0" />
-                     </font>
-                  </Text>
-                  <Text fx:id="error" fill="RED" layoutX="705.0" layoutY="72.0" strokeType="OUTSIDE" strokeWidth="0.0" />
-               </children>
-            </AnchorPane>
-            <AnchorPane layoutY="134.0" prefHeight="666.0" prefWidth="243.0" style="-fx-background-color: #666;">
-               <children>
-                  <AnchorPane prefHeight="153.0" prefWidth="243.0" style="-fx-background-color: #383838;">
+            <ComboBox fx:id="gameList" layoutX="15.0" layoutY="63.0" onAction="#gameSelected" prefWidth="150.0" promptText="игра">
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </ComboBox>
+            <ScrollPane layoutX="14.0" layoutY="118.0" prefHeight="491.0" prefWidth="411.0">
+              <content>
+                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="533.0" prefWidth="412.0">
                      <children>
-                        <Button fx:id="viewBalanceButton" layoutX="8.0" layoutY="59.0" mnemonicParsing="false" onAction="#viewBalance" prefHeight="34.0" prefWidth="228.0" text="Посмотреть баланс">
-                           <font>
-                              <Font size="11.0" />
-                           </font>
-                           <cursor>
-                              <Cursor fx:constant="HAND" />
-                           </cursor>
-                        </Button>
+                        <VBox fx:id="GamesTable" prefHeight="536.0" prefWidth="410.0" style="-fx-background-color: white;" />
                      </children>
                   </AnchorPane>
-                  <AnchorPane layoutY="152.0" prefHeight="153.0" prefWidth="243.0" style="-fx-background-color: #383838;">
-                     <children>
-                        <Button fx:id="goToGamesButton" layoutX="8.0" layoutY="58.0" mnemonicParsing="false" onAction="#goToGames" prefHeight="34.0" prefWidth="228.0" text="Перейти к играм">
-                           <font>
-                              <Font size="11.0" />
-                           </font>
-                           <cursor>
-                              <Cursor fx:constant="HAND" />
-                           </cursor>
-                        </Button>
-                     </children>
-                  </AnchorPane>
-                  <Button fx:id="logOutButton" layoutX="53.0" layoutY="618.0" mnemonicParsing="false" onAction="#logOut" prefHeight="34.0" prefWidth="138.0" text="Выйти">
+              </content>
+            </ScrollPane>
+            <Text layoutX="16.0" layoutY="57.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Выберите игру" wrappingWidth="176.35205078125">
+               <font>
+                  <Font size="24.0" />
+               </font>
+            </Text>
+            <Button fx:id="openGameButton" layoutX="173.0" layoutY="62.0" mnemonicParsing="false" onAction="#openGame" text="Играть!">
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </Button>
+            <Text fx:id="gameSessionText" layoutX="15.0" layoutY="108.0" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="213.20703125">
+               <font>
+                  <Font size="16.0" />
+               </font>
+            </Text>
+            <Text layoutX="16.0" layoutY="25.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Активность сессии:">
+               <font>
+                  <Font size="23.0" />
+               </font>
+            </Text>
+            <Text fx:id="sessionActivity" layoutX="218.0" layoutY="26.0" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="220.564453125">
+               <font>
+                  <Font size="19.0" />
+               </font>
+            </Text>
+         </children>
+      </AnchorPane>
+      <AnchorPane prefHeight="135.0" prefWidth="1080.0" style="-fx-background-color: #666;">
+         <children>
+            <Text layoutX="242.0" layoutY="83.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Панель пользователя">
+               <font>
+                  <Font size="38.0" />
+               </font>
+            </Text>
+            <Text fx:id="error" fill="RED" layoutX="705.0" layoutY="72.0" strokeType="OUTSIDE" strokeWidth="0.0" />
+         </children>
+      </AnchorPane>
+      <AnchorPane layoutY="135.0" prefHeight="666.0" prefWidth="243.0" style="-fx-background-color: #666;">
+         <children>
+            <AnchorPane layoutX="1.0" prefHeight="153.0" prefWidth="243.0" style="-fx-background-color: #383838;">
+               <children>
+                  <Button fx:id="update" layoutX="8.0" layoutY="59.0" mnemonicParsing="false" onAction="#updateAction" prefHeight="34.0" prefWidth="228.0" text="Обновить страницу">
                      <font>
                         <Font size="11.0" />
                      </font>
@@ -106,59 +79,89 @@
                   </Button>
                </children>
             </AnchorPane>
-            <Line endX="141.5" layoutX="101.0" layoutY="285.0" startX="-108.70703125" stroke="#292929" />
-            <Line endX="20.0" endY="569.0" fill="#1c1c1c" layoutX="223.0" layoutY="231.0" startX="20.0" startY="-96.0" stroke="#1c1c1c" />
-            <Line endX="141.5" layoutX="101.0" layoutY="438.0" startX="-100.0" stroke="#292929" />
-            <Line endX="979.0" endY="-1.0" layoutX="101.0" layoutY="135.0" startX="-100.0" stroke="#292929" />
-            <AnchorPane fx:id="userPane" layoutX="713.0" layoutY="158.0" prefHeight="620.0" prefWidth="354.0" style="-fx-background-color: adadad; -fx-background-radius: 10;" visible="false">
-               <children>
-                  <Text layoutX="14.0" layoutY="31.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Пользователь: " wrappingWidth="176.35205078125">
-                     <font>
-                        <Font size="24.0" />
-                     </font>
-                  </Text>
-                  <Text layoutX="12.0" layoutY="63.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Купить сессию на                    на             " wrappingWidth="330.35205078125">
-                     <font>
-                        <Font size="24.0" />
-                     </font>
-                  </Text>
-                  <ComboBox fx:id="numberComputerList2" layoutX="210.0" layoutY="41.0" prefHeight="25.0" prefWidth="108.0" promptText="компьютер" />
-                  <Button fx:id="buySessionList" layoutX="14.0" layoutY="43.0" mnemonicParsing="false" onAction="#buySession" prefHeight="25.0" prefWidth="76.0" text="Купить">
-                     <cursor>
-                        <Cursor fx:constant="HAND" />
-                     </cursor>
-                  </Button>
-                  <Text fx:id="usernameShow" layoutX="171.0" layoutY="30.0" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="170.35205078125">
-                     <font>
-                        <Font size="24.0" />
-                     </font>
-                  </Text>
-                  <Text fx:id="amountItog" layoutX="171.0" layoutY="130.0" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="156.35205078125">
-                     <font>
-                        <Font size="24.0" />
-                     </font>
-                  </Text>
-                  <Text fx:id="balanceUpdateText" layoutX="123.0" layoutY="92.0" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="228.0" />
-                  <Text layoutX="13.0" layoutY="234.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Компьютеры с ценой                  за час" wrappingWidth="330.35205078125">
-                     <font>
-                        <Font size="18.0" />
-                     </font>
-                  </Text>
-                  <VBox fx:id="computerAmountTable" layoutX="12.0" layoutY="248.0" prefHeight="362.0" prefWidth="330.0" style="-fx-background-color: white;" />
-                  <ComboBox fx:id="amountComputerPerHourList" layoutX="192.0" layoutY="215.0" onAction="#amountComputerPerHour" prefHeight="25.0" prefWidth="83.0" promptText="сумма" />
-                  <Text fx:id="dateEndSession" layoutX="14.0" layoutY="171.0" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="330.0">
-                     <font>
-                        <Font size="24.0" />
-                     </font>
-                  </Text>
-                  <TextField fx:id="hoursInputButton" layoutX="43.0" layoutY="75.0" prefHeight="25.0" prefWidth="76.0" promptText="часов" />
-                  <Button fx:id="amountItogButton" layoutX="12.0" layoutY="105.0" mnemonicParsing="false" onAction="#amountItogAction" prefHeight="32.0" prefWidth="150.0" text="Рассчитать стоимость">
-                     <cursor>
-                        <Cursor fx:constant="HAND" />
-                     </cursor>
-                  </Button>
-               </children>
-            </AnchorPane>
+            <Button fx:id="logOutButton" layoutX="53.0" layoutY="618.0" mnemonicParsing="false" onAction="#logOut" prefHeight="34.0" prefWidth="138.0" text="Выйти">
+               <font>
+                  <Font size="11.0" />
+               </font>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </Button>
+         </children>
+      </AnchorPane>
+      <Line endX="243.29287719726562" endY="289.29290771484375" layoutY="-2.0" startX="-1.52587890625E-5" startY="289.29290771484375" stroke="#292929" />
+      <Line endX="243.0" endY="801.0" fill="#1c1c1c" layoutX="2.0" startX="243.0" startY="134.99998474121094" stroke="#1c1c1c" />
+      <Line endX="927.0" endY="55.00001525878906" layoutX="153.0" layoutY="80.0" startX="-153.00001525878906" startY="55.00001525878906" stroke="#292929" />
+      <AnchorPane layoutX="261.0" layoutY="158.0" prefHeight="620.0" prefWidth="354.0" style="-fx-background-color: adadad; -fx-background-radius: 10;">
+         <children>
+            <Text layoutX="10.0" layoutY="25.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Пользователь: " wrappingWidth="167.35205078125">
+               <font>
+                  <Font size="24.0" />
+               </font>
+            </Text>
+            <Text fx:id="usernameText" layoutX="170.0" layoutY="27.0" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="176.35205078125">
+               <font>
+                  <Font size="24.0" />
+               </font>
+            </Text>
+            <ScrollPane layoutX="12.0" layoutY="381.0" prefHeight="228.0" prefWidth="330.0">
+              <content>
+                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="219.0" prefWidth="329.0">
+                     <children>
+                        <VBox fx:id="visitHistory" prefHeight="250.0" prefWidth="330.0" style="-fx-background-color: white;" />
+                     </children>
+                  </AnchorPane>
+              </content>
+            </ScrollPane>
+            <Text layoutX="10.0" layoutY="374.0" strokeType="OUTSIDE" strokeWidth="0.0" text="История посещений" wrappingWidth="330.0">
+               <font>
+                  <Font size="24.0" />
+               </font>
+            </Text>
+            <Text layoutX="10.0" layoutY="139.0" strokeType="OUTSIDE" strokeWidth="0.0" text="История платежей" wrappingWidth="196.623046875">
+               <font>
+                  <Font size="23.0" />
+               </font>
+            </Text>
+            <ScrollPane layoutX="10.0" layoutY="145.0" prefHeight="203.0" prefWidth="330.0">
+              <content>
+                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="200.0" prefWidth="329.0">
+                     <children>
+                        <VBox fx:id="paymentHistory" prefHeight="200.0" prefWidth="330.0" style="-fx-background-color: white;" />
+                     </children>
+                  </AnchorPane>
+              </content>
+            </ScrollPane>
+            <Text layoutX="10.0" layoutY="82.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Осталось играть:" wrappingWidth="184.978515625">
+               <font>
+                  <Font size="23.0" />
+               </font>
+            </Text>
+            <Text fx:id="balanceInfoText" layoutX="188.0" layoutY="83.0" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="161.0">
+               <font>
+                  <Font size="23.0" />
+               </font>
+            </Text>
+            <Text layoutX="10.0" layoutY="54.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Текущий баланс:">
+               <font>
+                  <Font size="23.0" />
+               </font>
+            </Text>
+            <Text fx:id="balanceNowText" layoutX="191.0" layoutY="56.0" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="161.0000000000001">
+               <font>
+                  <Font size="23.0" />
+               </font>
+            </Text>
+            <Text layoutX="9.0" layoutY="110.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Цена компьютера в час:">
+               <font>
+                  <Font size="23.0" />
+               </font>
+            </Text>
+            <Text fx:id="costComputer" layoutX="269.0" layoutY="110.0" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="81.0">
+               <font>
+                  <Font size="23.0" />
+               </font>
+            </Text>
          </children>
       </AnchorPane>
    </children>
