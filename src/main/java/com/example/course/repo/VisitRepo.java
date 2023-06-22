@@ -13,5 +13,6 @@ public interface VisitRepo extends CrudRepository<Visit, Integer> {
     Visit save(Visit visit);
     boolean existsByUser(User user);
     List<Visit> findByUser(User user);
+    List<Visit> findByUserAndEndTimeIsNotNull(User user);
     List<Visit> findByUserAndComputerAndEndTimeIsNull(User user, Computer computer);
 }

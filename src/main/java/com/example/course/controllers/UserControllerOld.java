@@ -114,24 +114,10 @@ public class UserControllerOld extends CourseApplication {
         status = false;
         computer.setStatus("свободен");
         sessionActivity.setText("Сессия закончилась.");
-        List<Visit> activeVisits = visitRepo.findByUserAndComputerAndEndTimeIsNull(user, computer);
-        if (activeVisits.isEmpty()) {
-            Visit visit = activeVisits.get(0);
+        List<Visit> visits = visitRepo.findByUserAndEndTimeIsNotNull(user);
+            Visit visit = visits.get(0);
             visit.setEndTime(Time.valueOf(LocalTime.now()));
             visitRepo.save(visit);
-            double costPerMinute = computer.getCost() / 60;
-            Time startTime = visit.getStartTime();
-            Time endTime = visit.getEndTime();
-            long startTimeMillis = startTime.getTime();
-            long endTimeMillis = endTime.getTime();
-            long durationMillis = endTimeMillis - startTimeMillis;
-            long minutesUsed = TimeUnit.MILLISECONDS.toMinutes(durationMillis);
-            double totalCost = costPerMinute * minutesUsed;
-            user.setBalance(user.getBalance() - totalCost);
-            userRepo.save(user);
-        }
-        computerRepo.save(computer);
-
         FXMLLoader fxmlLoader = new FXMLLoader(CourseApplication.class.getResource("/fxmlScenes/auth.fxml"));
         fxmlLoader.setControllerFactory(springContext::getBean);
         Stage stage = new Stage();
@@ -203,7 +189,7 @@ public class UserControllerOld extends CourseApplication {
         }
     }
 
-    @Scheduled(fixedDelay = 60000) // Выполняется каждую минуту (60000 миллисекунд)
+    @Scheduled(fixedDelay = 1000) // Выполняется каждую минуту (60000 миллисекунд)
     public void checkStatusAndDeductBalance() {
         String username = storage.getUsername();
         User user = userRepo.findByUsername(username);
