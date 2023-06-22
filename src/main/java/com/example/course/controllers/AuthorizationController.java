@@ -99,25 +99,26 @@ public class AuthorizationController extends CourseApplication {
                             storage.setUsername(user.getUsername());
                         }
                     }
-                    Admin admin = new Admin();
-                    admin = adminRepo.findByUsername(loginAuthInput.getText());
-                    if (admin != null) {
-                        if (!admin.getPassword().equals(passwordAuthInput.getText())) {
-                            errorAuth.setText("Неверный пароль");
-                        } else {
-                            FXMLLoader fxmlLoader = new FXMLLoader(CourseApplication.class.getResource("/fxmlScenes/admin.fxml"));
-                            fxmlLoader.setControllerFactory(springContext::getBean);
-                            Stage stage = new Stage();
-                            Scene scene = new Scene(fxmlLoader.load());
-                            stage.setScene(scene);
-                            stage.show();
-                            errorAuth.getScene().getWindow().hide();
-                            storage.setUsername(admin.getUsername());
-                        }
-                    }
+
             } catch (Exception e) {
                 errorAuth.setText("Выберите компьютер");
             }
+                Admin admin = new Admin();
+                admin = adminRepo.findByUsername(loginAuthInput.getText());
+                if (admin != null) {
+                    if (!admin.getPassword().equals(passwordAuthInput.getText())) {
+                        errorAuth.setText("Неверный пароль");
+                    } else {
+                        FXMLLoader fxmlLoader = new FXMLLoader(CourseApplication.class.getResource("/fxmlScenes/admin.fxml"));
+                        fxmlLoader.setControllerFactory(springContext::getBean);
+                        Stage stage = new Stage();
+                        Scene scene = new Scene(fxmlLoader.load());
+                        stage.setScene(scene);
+                        stage.show();
+                        errorAuth.getScene().getWindow().hide();
+                        storage.setUsername(admin.getUsername());
+                    }
+                }
         }
     }
 

@@ -1,6 +1,7 @@
 package com.example.course.controllers;
 
 import com.example.course.CourseApplication;
+import com.example.course.entities.Computer;
 import com.example.course.entities.PaymentHistory;
 import com.example.course.entities.User;
 import com.example.course.repo.ComputerRepo;
@@ -41,6 +42,9 @@ public class AdminController extends CourseApplication {
 
     @FXML
     private Text balanceUpdateADmin;
+
+    @FXML
+    private ComboBox<Integer> brokenComputer;
 
     @FXML
     private Text error;
@@ -98,6 +102,12 @@ public class AdminController extends CourseApplication {
 
     @FXML
     private ComboBox<String> usernameList2;
+
+    @FXML
+    private Text adminBrokenText;
+
+    @FXML
+    private Text adminFixedText;
 
     @Autowired
     private ComputerRepo computerRepo;
@@ -167,6 +177,8 @@ public class AdminController extends CourseApplication {
         reservationPane.setVisible(false);
         List<String> computerStatusList = computerRepo.getAllStatus();
         statusCheck.setItems(FXCollections.observableArrayList(computerStatusList));
+        List<Integer> computerNumbers = computerRepo.getAllComputerNumbers();
+        brokenComputer.setItems(FXCollections.observableArrayList(computerNumbers));
     }
 
     @FXML
@@ -183,6 +195,51 @@ public class AdminController extends CourseApplication {
     @FXML
     void usernameListChoose2(ActionEvent event) {
 
+    }
+
+    @FXML
+    void brokenChoose(ActionEvent event) {
+        adminFixedText.setText("");
+        adminBrokenText.setText("");
+    }
+    @FXML
+    void addBroken(ActionEvent event) {
+        int compNumber = 0;
+        try {
+            compNumber = brokenComputer.getValue();
+            Computer computer = computerRepo.findByNumber(compNumber);
+            if (!computer.getStatus().equals("сломан")) {
+            computer.setStatus("сломан");
+            adminBrokenText.setText("Статус задан");
+            computerRepo.save(computer);
+            List<String> computerStatusList = computerRepo.getAllStatus();
+            statusCheck.setItems(FXCollections.observableArrayList(computerStatusList));
+        } else {
+            adminFixedText.setText("Уже сломан");
+        }
+        } catch (Exception e) {
+            adminBrokenText.setText("Выберите компьютер");
+        }
+    }
+
+    @FXML
+    void addFixed(ActionEvent event) {
+        int compNumber = 0;
+        try {
+            compNumber = brokenComputer.getValue();
+            Computer computer = computerRepo.findByNumber(compNumber);
+            if (!computer.getStatus().equals("свободен")) {
+                computer.setStatus("свободен");
+                adminFixedText.setText("Статус задан");
+                computerRepo.save(computer);
+                List<String> computerStatusList = computerRepo.getAllStatus();
+                statusCheck.setItems(FXCollections.observableArrayList(computerStatusList));
+            } else {
+                adminFixedText.setText("Уже свободен");
+            }
+        } catch (Exception e) {
+            adminFixedText.setText("Выберите компьютер");
+        }
     }
 
     @FXML
