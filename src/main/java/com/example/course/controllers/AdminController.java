@@ -12,10 +12,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.control.ChoiceBox;
-import javafx.scene.control.ComboBox;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
@@ -71,6 +68,9 @@ public class AdminController extends CourseApplication {
     private ComboBox<Integer> numberComputerList;
 
     @FXML
+    private VBox paymentHistoryVBox;
+
+    @FXML
     private Button reservationButton;
 
     @FXML
@@ -109,6 +109,9 @@ public class AdminController extends CourseApplication {
     @FXML
     private Text adminFixedText;
 
+    @FXML
+    private DatePicker reservationDate;
+
     @Autowired
     private ComputerRepo computerRepo;
     @Autowired
@@ -134,6 +137,16 @@ public class AdminController extends CourseApplication {
                 payment.setUser(user);
                 paymentRepo.save(payment);
                 balanceUpdateADmin.setText("Баланс пополнен на " + amountText);
+
+                paymentHistoryVBox.getChildren().clear();
+                List<PaymentHistory> paymentHistoryList = paymentRepo.findByUserOrderByDateDesc(user);
+                for (PaymentHistory payments : paymentHistoryList) {
+                    String date = payments.getDate().toString();
+                    String time = payments.getTime().toString();
+                    double amounts = payments.getAmount();
+                    Text paymentInfo = new Text(" Дата: " + date + ", Время: " + time + ", Сумма: " + amounts + " Пользователь: " + selectedUsername);
+                    paymentHistoryVBox.getChildren().add(paymentInfo);
+                }
             }
         }else {balanceUpdateADmin.setText("Выберите пользователя");}
     }
@@ -144,12 +157,38 @@ public class AdminController extends CourseApplication {
     }
 
     @FXML
+    void showVBoxUser(ActionEvent event) {
+        String selectedUsername = usernameList.getValue();
+        if (selectedUsername != null) {
+            User user = userRepo.findByUsername(selectedUsername);
+            paymentHistoryVBox.getChildren().clear();
+            List<PaymentHistory> paymentHistoryList = paymentRepo.findByUserOrderByDateDesc(user);
+            for (PaymentHistory payment : paymentHistoryList) {
+                String date = payment.getDate().toString();
+                String time = payment.getTime().toString();
+                double amount = payment.getAmount();
+                Text paymentInfo = new Text("Дата: " + date + ", Время: " + time + ", Сумма: " + amount + " Пользователь: " + selectedUsername);
+                paymentHistoryVBox.getChildren().add(paymentInfo);
+            }
+        }else {balanceUpdateADmin.setText("Выберите пользователя");}
+    }
+
+    @FXML
     void editBalance(ActionEvent event) {
         statusPane.setVisible(false);
         editBalancePane.setVisible(true);
         reservationPane.setVisible(false);
         List<String> userNameLister = userRepo.getAllUsername();
         usernameList.setItems(FXCollections.observableArrayList(userNameLister));
+
+        List<PaymentHistory> paymentHistoryList = paymentRepo.findByUserIsNotNullOrderByDateDesc();
+        for (PaymentHistory payment : paymentHistoryList) {
+            String date = payment.getDate().toString();
+            String time = payment.getTime().toString();
+            double amount = payment.getAmount();
+            Text paymentInfo = new Text("Дата: " + date + ", Время: " + time + ", Сумма: " + amount + " Пользователь: " + payment.getUser().getUsername());
+            paymentHistoryVBox.getChildren().add(paymentInfo);
+        }
     }
 
     @FXML
@@ -161,8 +200,6 @@ public class AdminController extends CourseApplication {
         numberComputerList.setItems(FXCollections.observableArrayList(compNumber));
         List<String> userNameLister = userRepo.getAllUsername();
         usernameList2.setItems(FXCollections.observableArrayList(userNameLister));
-
-        timeReservationList.setItems(FXCollections.observableArrayList());
     }
 
     @FXML
@@ -190,7 +227,6 @@ public class AdminController extends CourseApplication {
     void usernameListChoose(ActionEvent event) {
 
     }
-
 
     @FXML
     void usernameListChoose2(ActionEvent event) {

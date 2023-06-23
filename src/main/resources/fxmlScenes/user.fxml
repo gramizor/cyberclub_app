@@ -21,9 +21,9 @@
             </ComboBox>
             <ScrollPane layoutX="14.0" layoutY="118.0" prefHeight="491.0" prefWidth="411.0">
               <content>
-                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="533.0" prefWidth="412.0">
+                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="471.0" prefWidth="540.0">
                      <children>
-                        <VBox fx:id="GamesTable" prefHeight="536.0" prefWidth="410.0" style="-fx-background-color: white;" />
+                        <VBox fx:id="gamesVBox" prefHeight="476.0" prefWidth="576.0" style="-fx-background-color: white;" />
                      </children>
                   </AnchorPane>
               </content>
@@ -106,9 +106,9 @@
             </Text>
             <ScrollPane layoutX="12.0" layoutY="381.0" prefHeight="228.0" prefWidth="330.0">
               <content>
-                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="219.0" prefWidth="329.0">
+                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="219.0" prefWidth="393.0">
                      <children>
-                        <VBox fx:id="visitHistory" prefHeight="250.0" prefWidth="330.0" style="-fx-background-color: white;" />
+                        <VBox fx:id="visitHistoryVBox" prefHeight="218.0" prefWidth="391.0" style="-fx-background-color: white;" />
                      </children>
                   </AnchorPane>
               </content>
@@ -125,9 +125,9 @@
             </Text>
             <ScrollPane layoutX="10.0" layoutY="145.0" prefHeight="203.0" prefWidth="330.0">
               <content>
-                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="200.0" prefWidth="329.0">
+                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="224.0" prefWidth="307.0">
                      <children>
-                        <VBox fx:id="paymentHistory" prefHeight="200.0" prefWidth="330.0" style="-fx-background-color: white;" />
+                        <VBox fx:id="paymentHistoryVBox" prefHeight="228.0" prefWidth="313.0" style="-fx-background-color: white;" />
                      </children>
                   </AnchorPane>
               </content>

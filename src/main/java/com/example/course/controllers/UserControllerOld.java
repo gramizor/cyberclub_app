@@ -14,6 +14,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
+import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.VBox;
@@ -44,9 +45,6 @@ import java.util.stream.Collectors;
 public class UserControllerOld extends CourseApplication {
 
     @FXML
-    private VBox GamesTable;
-
-    @FXML
     private Text balanceInfoText;
 
     @FXML
@@ -65,13 +63,22 @@ public class UserControllerOld extends CourseApplication {
     private Text gameSessionText;
 
     @FXML
+    private AnchorPane gamesAP;
+
+    @FXML
+    private VBox gamesVBox;
+
+    @FXML
     private Button logOutButton;
 
     @FXML
     private Button openGameButton;
 
     @FXML
-    private VBox paymentHistory;
+    private AnchorPane paymentHistoryAP;
+
+    @FXML
+    private VBox paymentHistoryVBox;
 
     @FXML
     private Text sessionActivity;
@@ -83,7 +90,10 @@ public class UserControllerOld extends CourseApplication {
     private Text usernameText;
 
     @FXML
-    private VBox visitHistory;
+    private AnchorPane visitHistoryAP;
+
+    @FXML
+    private VBox visitHistoryVBox;
 
     @Autowired
     private Storage storage;
@@ -109,8 +119,7 @@ public class UserControllerOld extends CourseApplication {
         String username = storage.getUsername();
         User user = userRepo.findByUsername(username);
         Integer number = storage.getNumber();
-        List<Computer> computers = computerRepo.findByNumber(number);
-        Computer computer = computers.get(0);
+        Computer computer = computerRepo.findByNumber(number);
         if (status == true) {
             status = false;
             computer.setStatus("свободен");
@@ -164,17 +173,45 @@ public class UserControllerOld extends CourseApplication {
         balanceNowText.setText(String.valueOf(user.getBalance()).concat(" руб"));
 
         Integer numbers = storage.getNumber();
-        List<Computer> computers = computerRepo.findByNumber(numbers);
+        Computer computers = computerRepo.findByNumber(numbers);
 
-        double costPerHour = computers.get(0).getCost();
+        double costPerHour = computers.getCost();
         double hours = user.getBalance() / costPerHour;
         balanceInfoText.setText(String.valueOf(hours).concat(" часов"));
+
+        paymentHistoryVBox.getChildren().clear();
+        List<PaymentHistory> paymentHistories = paymentRepo.findByUserOrderByDateDesc(user);
+        paymentHistoryVBox.getChildren().clear();
+        for (PaymentHistory payment : paymentHistories) {
+            Label paymentLabel = new Label("Дата: " + payment.getDate() + " " + payment.getTime() + " " + " Cумма: " + payment.getAmount() + " руб.");
+            paymentHistoryVBox.getChildren().add(paymentLabel);
+        }
+
+        visitHistoryVBox.getChildren().clear();
+        List<Visit> visits = visitRepo.findByUser(user);
+        for (Visit visit : visits) {
+            String visitInfo = "Дата: " + visit.getDate() + "  " +
+                    " Начало посещения: " + visit.getStartTime() + "  " +
+                    " Конец посещения: " + visit.getEndTime();
+            Label visitLabel = new Label(visitInfo);
+            visitHistoryVBox.getChildren().add(visitLabel);
+        }
+
+        gamesVBox.getChildren().clear();
+        List<Game> gameList = gameRepo.findAll();
+        for (Game game : games) {
+            String gameInfo = "Название игры: " + game.getName() + "\n" +
+                    "Описание: " + game.getDescription() + "\n";
+            Label gameLabel = new Label(gameInfo);
+            gamesVBox.getChildren().add(gameLabel);
+        }
+
 
         String costPerHourString = String.valueOf(costPerHour);
         costComputer.setText(costPerHourString);
         if (status == false) {
             if (user.getBalance() > 0 ) {
-                Computer computer = computers.get(0);
+                Computer computer = computers;
                 computer.setStatus("занят");
                 sessionActivity.setText("Сессия началась");
                 double costPerMinute = computer.getCost() / 60;
@@ -199,10 +236,10 @@ public class UserControllerOld extends CourseApplication {
         String username = storage.getUsername();
         User user = userRepo.findByUsername(username);
         Integer number = storage.getNumber();
-        List<Computer> computers = computerRepo.findByNumber(number);
+        Computer computers = computerRepo.findByNumber(number);
 
-        if (!computers.isEmpty()) {
-            Computer computer = computers.get(0);
+        if (computers!=null) {
+            Computer computer = computers;
 
             if (status) {
                 double costPerMinute = computer.getCost() / 60;
@@ -218,5 +255,4 @@ public class UserControllerOld extends CourseApplication {
             }
         }
     }
-
 }
