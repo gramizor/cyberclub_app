@@ -116,10 +116,12 @@ public class UserControllerOld extends CourseApplication {
             computer.setStatus("свободен");
             computerRepo.save(computer);
             sessionActivity.setText("Сессия закончилась.");
-            List<Visit> visits = visitRepo.findByUserAndEndTimeIsNotNull(user);
-            Visit visit = visits.get(0);
-            visit.setEndTime(Time.valueOf(LocalTime.now()));
-            visitRepo.save(visit);
+            user.getVisit().forEach(o->{
+                if(o.getEndTime()==null){
+                    o.setEndTime(Time.valueOf(LocalTime.now()));
+                }
+            });
+            userRepo.save(user);
         }
         FXMLLoader fxmlLoader = new FXMLLoader(CourseApplication.class.getResource("/fxmlScenes/auth.fxml"));
         fxmlLoader.setControllerFactory(springContext::getBean);
