@@ -233,26 +233,30 @@ public class UserControllerOld extends CourseApplication {
 
     @Scheduled(fixedDelay = 1000) // Выполняется каждую минуту (60000 миллисекунд)
     public void checkStatusAndDeductBalance() {
-        String username = storage.getUsername();
-        User user = userRepo.findByUsername(username);
-        Integer number = storage.getNumber();
-        Computer computers = computerRepo.findByNumber(number);
+        try {
+            String username = storage.getUsername();
+            User user = userRepo.findByUsername(username);
+            Integer number = storage.getNumber();
+            Computer computers = computerRepo.findByNumber(number);
 
-        if (computers!=null) {
-            Computer computer = computers;
+            if (computers!=null) {
+                Computer computer = computers;
 
-            if (status) {
-                double costPerMinute = computer.getCost() / 60;
-                double remainingBalance = Math.round(user.getBalance() - costPerMinute);
+                if (status) {
+                    double costPerMinute = computer.getCost() / 60;
+                    double remainingBalance = Math.round(user.getBalance() - costPerMinute);
 
-                if (remainingBalance <= 0) {
-                    sessionActivity.setText("Сессия закончена, пополните баланс");
-                    status = false;
-                } else {
-                    user.setBalance(remainingBalance);
-                    userRepo.save(user);
+                    if (remainingBalance <= 0) {
+                        sessionActivity.setText("Сессия закончена, пополните баланс");
+                        status = false;
+                    } else {
+                        user.setBalance(remainingBalance);
+                        userRepo.save(user);
+                    }
                 }
             }
+        }catch (Exception e){
+
         }
     }
 }
