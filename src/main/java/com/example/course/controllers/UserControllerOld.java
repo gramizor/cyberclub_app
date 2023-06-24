@@ -176,7 +176,7 @@ public class UserControllerOld extends CourseApplication {
         Computer computers = computerRepo.findByNumber(numbers);
 
         double costPerHour = computers.getCost();
-        double hours = user.getBalance() / costPerHour;
+        double hours = Math.round(user.getBalance() / costPerHour);
         balanceInfoText.setText(String.valueOf(hours).concat(" часов"));
 
         paymentHistoryVBox.getChildren().clear();
@@ -190,10 +190,8 @@ public class UserControllerOld extends CourseApplication {
         visitHistoryVBox.getChildren().clear();
         List<Visit> visits = visitRepo.findByUser(user);
         for (Visit visit : visits) {
-            String visitInfo = "Дата: " + visit.getDate() + "  " +
-                    " Начало посещения: " + visit.getStartTime() + "  " +
-                    " Конец посещения: " + visit.getEndTime();
-            Label visitLabel = new Label(visitInfo);
+            Label visitLabel = new Label("Дата: " + visit.getDate() + "  " + " Начало посещения: " + visit.getStartTime() + "  " +
+                    " Конец посещения: " + visit.getEndTime());
             visitHistoryVBox.getChildren().add(visitLabel);
         }
 
@@ -247,7 +245,9 @@ public class UserControllerOld extends CourseApplication {
                     double remainingBalance = Math.round(user.getBalance() - costPerMinute);
 
                     if (remainingBalance <= 0) {
+
                         sessionActivity.setText("Сессия закончена, пополните баланс");
+
                         status = false;
                     } else {
                         user.setBalance(remainingBalance);

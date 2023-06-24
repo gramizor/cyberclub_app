@@ -115,7 +115,7 @@
             </ScrollPane>
          </children>
       </AnchorPane>
-      <AnchorPane fx:id="statusPane" layoutX="354.0" layoutY="187.0" prefHeight="561.0" prefWidth="635.0" style="-fx-background-color: adadad; -fx-background-radius: 10;">
+      <AnchorPane fx:id="statusPane" layoutX="354.0" layoutY="187.0" prefHeight="561.0" prefWidth="635.0" style="-fx-background-color: adadad; -fx-background-radius: 10;" visible="false">
          <children>
             <Text layoutX="14.0" layoutY="23.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Выберите статус компьютера" wrappingWidth="278.765625">
                <font>
@@ -137,7 +137,7 @@
                   <Cursor fx:constant="HAND" />
                </cursor>
             </ComboBox>
-            <Button layoutX="301.0" layoutY="61.0" mnemonicParsing="false" onAction="#addBroken" prefHeight="25.0" prefWidth="103.0" text="свободен">
+            <Button layoutX="301.0" layoutY="61.0" mnemonicParsing="false" onAction="#addBroken" prefHeight="25.0" prefWidth="103.0" text="сломан">
                <cursor>
                   <Cursor fx:constant="HAND" />
                </cursor>
@@ -162,7 +162,7 @@
                   <VBox fx:id="statusVBox" prefHeight="449.0" prefWidth="588.0" />
                </content>
             </ScrollPane>
-            <Button layoutX="14.0" layoutY="61.0" mnemonicParsing="false" onAction="#showStatusVBOX" prefHeight="25.0" prefWidth="150.0" text="показать компьютеры" textAlignment="CENTER">
+            <Button layoutX="14.0" layoutY="61.0" mnemonicParsing="false" onAction="#showStatusVBox" prefHeight="25.0" prefWidth="150.0" text="показать компьютеры" textAlignment="CENTER">
                <cursor>
                   <Cursor fx:constant="HAND" />
                </cursor>

@@ -89,7 +89,7 @@ public class AdminController extends CourseApplication {
     private AnchorPane statusPane;
 
     @FXML
-    private VBox statusTable;
+    private VBox statusVBox;
 
     @FXML
     private ComboBox<?> timeReservationList;
@@ -154,6 +154,21 @@ public class AdminController extends CourseApplication {
     @FXML
     void amountInputAction(ActionEvent event) {
 
+    }
+
+    @FXML
+    void showStatusVBox(ActionEvent event) {
+        statusVBox.getChildren().clear();
+        String selectedStatus = statusCheck.getValue();
+
+        if (selectedStatus != null) {
+            List<Computer> computers = computerRepo.findByStatusOrderByNumberAsc(selectedStatus);
+            for (Computer computer : computers) {
+                Label computerNumberLabel = new Label("Номер компьютера: " + computer.getNumber());
+                Label statusLabel = new Label("Статус: " + computer.getStatus());
+                statusVBox.getChildren().addAll(computerNumberLabel, statusLabel);
+            }
+        }
     }
 
     @FXML
@@ -251,7 +266,7 @@ public class AdminController extends CourseApplication {
             List<String> computerStatusList = computerRepo.getAllStatus();
             statusCheck.setItems(FXCollections.observableArrayList(computerStatusList));
         } else {
-            adminFixedText.setText("Уже сломан");
+            adminBrokenText.setText("Уже сломан");
         }
         } catch (Exception e) {
             adminBrokenText.setText("Выберите компьютер");
@@ -264,14 +279,14 @@ public class AdminController extends CourseApplication {
         try {
             compNumber = brokenComputer.getValue();
             Computer computer = computerRepo.findByNumber(compNumber);
-            if (!computer.getStatus().equals("свободен")) {
-                computer.setStatus("свободен");
+            if (computer.getStatus().equals("сломан")) {
+                computer.setStatus("починен");
                 adminFixedText.setText("Статус задан");
                 computerRepo.save(computer);
                 List<String> computerStatusList = computerRepo.getAllStatus();
                 statusCheck.setItems(FXCollections.observableArrayList(computerStatusList));
             } else {
-                adminFixedText.setText("Уже свободен");
+                adminFixedText.setText("Уже исправен");
             }
         } catch (Exception e) {
             adminFixedText.setText("Выберите компьютер");
