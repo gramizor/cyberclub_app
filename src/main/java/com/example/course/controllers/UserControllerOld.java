@@ -170,7 +170,9 @@ public class UserControllerOld extends CourseApplication {
         List<String> gameNames = games.stream().map(Game::getName).collect(Collectors.toList());
         gameList.setItems(FXCollections.observableArrayList(gameNames));
 
-        balanceNowText.setText(String.valueOf(user.getBalance()).concat(" руб"));
+        double balance = user.getBalance();
+        String formattedBalance = String.format("%.2f", balance);
+        balanceNowText.setText(formattedBalance.concat(" руб"));
 
         Integer numbers = storage.getNumber();
         Computer computers = computerRepo.findByNumber(numbers);
@@ -241,8 +243,8 @@ public class UserControllerOld extends CourseApplication {
                 Computer computer = computers;
 
                 if (status) {
-                    double costPerMinute = computer.getCost() / 60;
-                    double remainingBalance = Math.round(user.getBalance() - costPerMinute);
+                    double costPerMinute = computer.getCost() / 3600.0;
+                    double remainingBalance = user.getBalance() - costPerMinute;
 
                     if (remainingBalance <= 0) {
 

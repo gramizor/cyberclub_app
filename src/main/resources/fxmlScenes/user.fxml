@@ -24,12 +24,12 @@
                   <Font size="24.0" />
                </font>
             </Text>
-            <Button fx:id="openGameButton" layoutX="173.0" layoutY="62.0" mnemonicParsing="false" onAction="#openGame" text="Играть!">
+            <Button fx:id="openGameButton" layoutX="170.0" layoutY="63.0" mnemonicParsing="false" onAction="#openGame" text="Играть!">
                <cursor>
                   <Cursor fx:constant="HAND" />
                </cursor>
             </Button>
-            <Text fx:id="gameSessionText" layoutX="15.0" layoutY="108.0" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="213.20703125">
+            <Text fx:id="gameSessionText" layoutX="232.0" layoutY="81.0" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="201.564453125">
                <font>
                   <Font size="16.0" />
                </font>

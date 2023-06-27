@@ -195,7 +195,7 @@ public class AdminController extends CourseApplication {
         reservationPane.setVisible(false);
         List<String> userNameLister = userRepo.getAllUsername();
         usernameList.setItems(FXCollections.observableArrayList(userNameLister));
-
+        paymentHistoryVBox.getChildren().clear();
         List<PaymentHistory> paymentHistoryList = paymentRepo.findByUserIsNotNullOrderByDateDesc();
         for (PaymentHistory payment : paymentHistoryList) {
             String date = payment.getDate().toString();
